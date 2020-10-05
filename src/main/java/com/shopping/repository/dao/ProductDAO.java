@@ -1,4 +1,4 @@
-package com.shopping.repositroy.dao;
+package com.shopping.repository.dao;
 
 public class ProductDAO {
 

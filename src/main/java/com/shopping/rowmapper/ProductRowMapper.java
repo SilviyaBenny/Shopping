@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.shopping.repositroy.dao.ProductDAO;
+import com.shopping.repository.dao.ProductDAO;
 
 public class ProductRowMapper implements RowMapper<ProductDAO> {
 	@Override

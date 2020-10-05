@@ -10,7 +10,7 @@ import com.shopping.bo.ProductBO;
 import com.shopping.botodao.mapper.ProductBOtoRepositoryDAOMapper;
 import com.shopping.daotobo.mapper.ProductRepositoryDAOtoBOMapper;
 import com.shopping.repository.ProductRepository;
-import com.shopping.repositroy.dao.ProductDAO;
+import com.shopping.repository.dao.ProductDAO;
 
 @Component
 public class ProductBOServices {
