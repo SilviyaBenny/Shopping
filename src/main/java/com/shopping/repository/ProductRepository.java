@@ -1,0 +1,66 @@
+package com.shopping.repository;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import com.shopping.repositroy.dao.ProductDAO;
+import com.shopping.rowmapper.ProductRowMapper;
+
+@Repository
+public class ProductRepository {
+
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	private final String INSERT_QUERY = "INSERT INTO PRODUCT (ID,NAME, QUANTITY,PRICE,SKU) VALUES (:ID,:NAME,:QUANTITY,:PRICE,:SKU)";
+	private final String SELECT_ALL_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU FROM PRODUCT ";
+	private final String SELECT_BY_ID_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU FROM PRODUCT WHERE ID = :ID";
+	private final String UPDATE_QUERY = "UPDATE PRODUCT SET ID=:ID,NAME=:NAME, QUANTITY=:QUANTITY,PRICE=:PRICE,SKU=:SKU  WHERE ID = :ID";
+	private final String DELETE_QUERY = "DELETE FROM PRODUCT WHERE ID = :ID";
+
+	public ProductDAO create(ProductDAO productDAO) {
+		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+		SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("ID", productDAO.getId())
+				.addValue("NAME", productDAO.getName()).addValue("QUANTITY", productDAO.getQuantity())
+				.addValue("PRICE", productDAO.getPrice()).addValue("SKU", productDAO.getSku());
+
+		namedParameterJdbcTemplate.update(INSERT_QUERY, namedParameters, keyHolder, new String[] { "ID" });
+		Long id = (Long) keyHolder.getKey();
+		productDAO.setId(id.intValue());
+		return productDAO;
+	}
+
+	public List<ProductDAO> getAll() {
+		return namedParameterJdbcTemplate.query(SELECT_ALL_QUERY, new ProductRowMapper());
+	}
+
+	public ProductDAO getById(int id) {
+		return this.namedParameterJdbcTemplate.queryForObject(SELECT_BY_ID_QUERY, new MapSqlParameterSource("ID", id),
+				new ProductRowMapper());
+	}
+
+	public ProductDAO update(ProductDAO productDAO, int id) {
+		SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("ID", id)
+				.addValue("NAME", productDAO.getName()).addValue("QUANTITY", productDAO.getQuantity())
+				.addValue("PRICE", productDAO.getPrice()).addValue("SKU", productDAO.getSku());
+
+		namedParameterJdbcTemplate.update(UPDATE_QUERY, namedParameters);
+		productDAO.setId(id);
+		return productDAO;
+	}
+
+	public int deleteById(int id) {
+		SqlParameterSource namedParameters = new MapSqlParameterSource("ID", id);
+		namedParameterJdbcTemplate.update(DELETE_QUERY, namedParameters);
+		return id;
+	}
+}
