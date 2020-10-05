@@ -1,6 +1,6 @@
-package com.shopping.RequesttoBO.mapper;
+package com.shopping.requesttobo.mapper;
 
-import com.shopping.BO.ProductBO;
+import com.shopping.bo.ProductBO;
 import com.shopping.requestjson.ProductRequestJson;
 
 public class ProductRequestJsonToBOMapper {

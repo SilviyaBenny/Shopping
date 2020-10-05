@@ -1,4 +1,4 @@
-package com.shopping.BO;
+package com.shopping.bo;
 
 public class ProductBO {
 

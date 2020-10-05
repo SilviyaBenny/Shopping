@@ -1,4 +1,4 @@
-package com.shopping.BOservices;
+package com.shopping.boservices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.shopping.BO.ProductBO;
-import com.shopping.BOtoRepositoryDAO.mapper.ProductBOtoRepositoryDAOMapper;
-import com.shopping.RepositoryDAOtoBO.mapper.ProductRepositoryDAOtoBOMapper;
+import com.shopping.bo.ProductBO;
+import com.shopping.botodao.mapper.ProductBOtoRepositoryDAOMapper;
+import com.shopping.daotobo.mapper.ProductRepositoryDAOtoBOMapper;
 import com.shopping.repository.ProductRepository;
 import com.shopping.repositroy.dao.ProductDAO;
-import com.shopping.responsejson.ProductResponseJson;
 
 @Component
 public class ProductBOServices {

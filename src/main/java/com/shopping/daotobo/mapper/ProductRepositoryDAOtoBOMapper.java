@@ -1,6 +1,6 @@
-package com.shopping.RepositoryDAOtoBO.mapper;
+package com.shopping.daotobo.mapper;
 
-import com.shopping.BO.ProductBO;
+import com.shopping.bo.ProductBO;
 import com.shopping.repositroy.dao.ProductDAO;
 
 public class ProductRepositoryDAOtoBOMapper {

@@ -1,6 +1,6 @@
-package com.shopping.BOtoResponse.mapper;
+package com.shopping.botoresponse.mapper;
 
-import com.shopping.BO.ProductBO;
+import com.shopping.bo.ProductBO;
 import com.shopping.responsejson.ProductResponseJson;
 
 public class ProductBOtoResponseJsonMapper {
