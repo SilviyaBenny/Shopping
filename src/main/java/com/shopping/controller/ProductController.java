@@ -31,14 +31,16 @@ public class ProductController {
 
 	@Autowired
 	private ProductBOServices productBoService;
+	@Autowired
+	ProductRequestJsonToBOMapper jsontoBO;
+	@Autowired
+	ProductBOtoResponseJsonMapper respJsonMapper;
 
 	@PostMapping()
 	public ResponseEntity<ProductResponseJson> create(@RequestBody ProductRequestJson requestJson) {
 		logger.info("Incoming Request" + requestJson);
-		ProductRequestJsonToBOMapper jsontoBO = new ProductRequestJsonToBOMapper();
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.create(bo);
-		ProductBOtoResponseJsonMapper respJsonMapper = new ProductBOtoResponseJsonMapper();
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		logger.info("Outgoing Response " + responseJson);
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
@@ -48,7 +50,6 @@ public class ProductController {
 	public ResponseEntity<List<ProductResponseJson>> getAll() {
 		logger.info("Incoming Request");
 		List<ProductBO> boList = productBoService.getAll();
-		ProductBOtoResponseJsonMapper respJsonMapper = new ProductBOtoResponseJsonMapper();
 		List<ProductResponseJson> respJsonList = new ArrayList<>();
 		for (ProductBO productBO : boList) {
 			ProductResponseJson responseJson = respJsonMapper.mapObject(productBO);
@@ -62,7 +63,6 @@ public class ProductController {
 	public ResponseEntity<ProductResponseJson> getById(@PathVariable("id") int id) {
 		logger.info("Incoming Request" + id);
 		ProductBO respBo = productBoService.getById(id);
-		ProductBOtoResponseJsonMapper respJsonMapper = new ProductBOtoResponseJsonMapper();
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		logger.info("Outgoing Response " + responseJson);
 		return ResponseEntity.status(HttpStatus.OK).body(responseJson);
@@ -73,10 +73,8 @@ public class ProductController {
 			@RequestBody ProductRequestJson requestJson) {
 
 		logger.info("Incoming Request" + id);
-		ProductRequestJsonToBOMapper jsontoBO = new ProductRequestJsonToBOMapper();
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.update(bo, id);
-		ProductBOtoResponseJsonMapper respJsonMapper = new ProductBOtoResponseJsonMapper();
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		logger.info("Outgoing Response " + responseJson);
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);

@@ -1,8 +1,11 @@
 package com.shopping.daotobo.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.shopping.bo.ProductBO;
 import com.shopping.repository.dao.ProductDAO;
 
+@Component
 public class ProductRepositoryDAOtoBOMapper {
 
 	public ProductBO mapObject(ProductDAO repositoryDAO) {

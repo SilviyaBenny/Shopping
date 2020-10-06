@@ -1,8 +1,11 @@
 package com.shopping.botoresponse.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.shopping.bo.ProductBO;
 import com.shopping.responsejson.ProductResponseJson;
 
+@Component
 public class ProductBOtoResponseJsonMapper {
 	
 	public ProductResponseJson mapObject(ProductBO productBO) {
