@@ -15,6 +15,7 @@ public class ProductRequestJsonToBOMapper {
 		bo.setPrice(requestJson.getPrice());
 		bo.setQuantity(requestJson.getQuantity());
 		bo.setSku(requestJson.getSku());
+		bo.setDepartmentId(requestJson.getDepartmentId());
 
 		return bo;
 	}

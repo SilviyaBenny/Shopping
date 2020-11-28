@@ -27,7 +27,7 @@ import com.shopping.responsejson.DepartmentResponseJson;
 @RequestMapping("/department")
 @RestController
 public class DepartmentController {
-	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	private DepartmentBOServices departmentBOServices;
@@ -38,52 +38,52 @@ public class DepartmentController {
 
 	@PostMapping()
 	public ResponseEntity<DepartmentResponseJson> create(@RequestBody DepartmentRequestJson requestJson) {
-		logger.info("Incoming request " + requestJson);
+		LOGGER.info("Incoming request " + requestJson);
 		DepartmentBO bo = requestJsonToBOMapper.mapObject(requestJson);
 		DepartmentBO respBO = departmentBOServices.create(bo);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
-		logger.info("Outgoing Response " + respJson);
+		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
 
 	@GetMapping()
 	public ResponseEntity<List<DepartmentResponseJson>> getAll() {
-		logger.info("Incoming request ");
+		LOGGER.info("Incoming request ");
 		List<DepartmentBO> boList = departmentBOServices.getAll();
 		List<DepartmentResponseJson> respJsonList = new ArrayList<>();
 		for (DepartmentBO departmentBO : boList) {
 			DepartmentResponseJson respJson = botoResponseMapper.mapObject(departmentBO);
 			respJsonList.add(respJson);
 		}
-		logger.info("Outgoing Response " + respJsonList);
+		LOGGER.info("Outgoing Response " + respJsonList);
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<DepartmentResponseJson> getById(@PathVariable("id") int id) {
-		logger.info("Incoming request " + id);
+		LOGGER.info("Incoming request " + id);
 		DepartmentBO respBO = departmentBOServices.getById(id);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
-		logger.info("Outgoing Response " + respJson);
+		LOGGER.info("Outgoing Response " + respJson);
 		return ResponseEntity.status(HttpStatus.OK).body(respJson);
 	}
 
 	@PutMapping("{id}")
 	public ResponseEntity<DepartmentResponseJson> update(@PathVariable("id") int id,
 			@RequestBody DepartmentRequestJson requestJson) {
-		logger.info("Incoming request " + requestJson);
+		LOGGER.info("Incoming request " + requestJson);
 		DepartmentBO departmentBO = requestJsonToBOMapper.mapObject(requestJson);
 		DepartmentBO respBO = departmentBOServices.update(departmentBO, id);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
-		logger.info("Outgoing Response " + respJson);
+		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
 
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) {
-		logger.info("Incoming Request" + id);
+		LOGGER.info("Incoming Request" + id);
 		int numberofRecords = departmentBOServices.deleteById(id);
-		logger.info("Outgoing Response" + numberofRecords);
+		LOGGER.info("Outgoing Response" + numberofRecords);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

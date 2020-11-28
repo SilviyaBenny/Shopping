@@ -7,11 +7,12 @@ public class ProductResponseJson {
 	private int quantity;
 	private float price;
 	private String sku;
-
+	private int departmentId;
+	
 	@Override
 	public String toString() {
 		return "ProductResponseJson [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
-				+ ", sku=" + sku + "]";
+				+ ", sku=" + sku + " ,departmentId=" + departmentId + "]";
 	}
 
 	public int getId() {
@@ -53,4 +54,13 @@ public class ProductResponseJson {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	
 }
