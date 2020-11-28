@@ -17,6 +17,7 @@ public class ProductRowMapper implements RowMapper<ProductDAO> {
 		productdao.setQuantity(rs.getInt("QUANTITY"));
 		productdao.setPrice(rs.getFloat("PRICE"));
 		productdao.setSku(rs.getString("SKU"));
+		productdao.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
 		return productdao;
 	}
 }

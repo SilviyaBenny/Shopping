@@ -15,7 +15,7 @@ public class ProductRepositoryDAOtoBOMapper {
 		productBO.setPrice(repositoryDAO.getPrice());
 		productBO.setQuantity(repositoryDAO.getQuantity());
 		productBO.setSku(repositoryDAO.getSku());
-
+		productBO.setDepartmentId(repositoryDAO.getDepartmentId());
 		return productBO;
 	}
 }

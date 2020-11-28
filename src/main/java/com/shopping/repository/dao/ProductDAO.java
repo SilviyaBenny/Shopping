@@ -7,11 +7,11 @@ public class ProductDAO {
 	private int quantity;
 	private float price;
 	private String sku;
-
+	private int departmentId;
 	@Override
 	public String toString() {
 		return "ProductDAO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku="
-				+ sku + "]";
+				+ sku + " ,departmentId=" + departmentId + "]";
 	}
 
 	public int getId() {
@@ -53,4 +53,13 @@ public class ProductDAO {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	
 }

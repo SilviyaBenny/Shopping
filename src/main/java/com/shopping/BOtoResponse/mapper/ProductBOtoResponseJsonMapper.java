@@ -15,7 +15,7 @@ public class ProductBOtoResponseJsonMapper {
 		json.setPrice(productBO.getPrice());
 		json.setQuantity(productBO.getQuantity());
 		json.setSku(productBO.getSku());
-		
+		json.setDepartmentId(productBO.getDepartmentId());
 		return json;
 	}
 }
