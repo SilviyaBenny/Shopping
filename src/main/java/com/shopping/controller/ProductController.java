@@ -27,44 +27,44 @@ import com.shopping.responsejson.ProductResponseJson;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
-	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	private ProductBOServices productBoService;
 	@Autowired
-	ProductRequestJsonToBOMapper jsontoBO;
+	private ProductRequestJsonToBOMapper jsontoBO;
 	@Autowired
-	ProductBOtoResponseJsonMapper respJsonMapper;
+	private ProductBOtoResponseJsonMapper respJsonMapper;
 
 	@PostMapping()
 	public ResponseEntity<ProductResponseJson> create(@RequestBody ProductRequestJson requestJson) {
-		logger.info("Incoming Request" + requestJson);
+		LOGGER.info("Incoming Request" + requestJson);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.create(bo);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
-		logger.info("Outgoing Response " + responseJson);
+		LOGGER.info("Outgoing Response " + responseJson);
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
 	@GetMapping()
 	public ResponseEntity<List<ProductResponseJson>> getAll() {
-		logger.info("Incoming Request");
+		LOGGER.info("Incoming Request");
 		List<ProductBO> boList = productBoService.getAll();
 		List<ProductResponseJson> respJsonList = new ArrayList<>();
 		for (ProductBO productBO : boList) {
 			ProductResponseJson responseJson = respJsonMapper.mapObject(productBO);
 			respJsonList.add(responseJson);
 		}
-		logger.info("Outgoing Response " + respJsonList);
+		LOGGER.info("Outgoing Response " + respJsonList);
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<ProductResponseJson> getById(@PathVariable("id") int id) {
-		logger.info("Incoming Request" + id);
+		LOGGER.info("Incoming Request" + id);
 		ProductBO respBo = productBoService.getById(id);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
-		logger.info("Outgoing Response " + responseJson);
+		LOGGER.info("Outgoing Response " + responseJson);
 		return ResponseEntity.status(HttpStatus.OK).body(responseJson);
 	}
 
@@ -72,19 +72,19 @@ public class ProductController {
 	public ResponseEntity<ProductResponseJson> update(@PathVariable("id") int id,
 			@RequestBody ProductRequestJson requestJson) {
 
-		logger.info("Incoming Request" + id);
+		LOGGER.info("Incoming Request" + id);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.update(bo, id);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
-		logger.info("Outgoing Response " + responseJson);
+		LOGGER.info("Outgoing Response " + responseJson);
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) {
-		logger.info("Incoming Request" + id);
+		LOGGER.info("Incoming Request" + id);
 		int numberofRecords = productBoService.deleteById(id);
-		logger.info("Outgoing Response" + numberofRecords);
+		LOGGER.info("Outgoing Response" + numberofRecords);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }
