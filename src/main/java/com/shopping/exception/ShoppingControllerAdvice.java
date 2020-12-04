@@ -16,7 +16,7 @@ public class ShoppingControllerAdvice {
 	private Provider<EntityRequstContext> entityRequstContextProvider;
 	
 	@ExceptionHandler(value = ItemNotFoundException.class)	
-	public ResponseEntity<Object>exception(ItemNotFoundException infe){
+	public ResponseEntity<Object> exception(ItemNotFoundException infe){
 		
 		ShoppingErrorResp errorResp = new ShoppingErrorResp();
 		EntityRequstContext entityRequstContext = entityRequstContextProvider.get();

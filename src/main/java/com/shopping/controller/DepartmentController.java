@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopping.BOtoResponse.mapper.DepartmentBOtoResponseJsonMapper;
 import com.shopping.bo.DepartmentBO;
 import com.shopping.boservices.DepartmentBOServices;
-import com.shopping.botoresponse.mapper.DepartmentBOtoResponseJsonMapper;
 import com.shopping.requestjson.DepartmentRequestJson;
-import com.shopping.requesttobo.mapper.DepartmentRequestJsonToBOMapper;
+import com.shopping.requesttobomapper.DepartmentRequestJsonToBOMapper;
 import com.shopping.responsejson.DepartmentResponseJson;
 
 @RequestMapping("/department")

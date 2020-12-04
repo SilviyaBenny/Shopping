@@ -1,4 +1,4 @@
-package com.shopping.requesttobo.mapper;
+package com.shopping.requesttobomapper;
 
 import org.springframework.stereotype.Component;
 

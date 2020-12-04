@@ -18,22 +18,22 @@ public class ProductRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	private final String INSERT_QUERY = "INSERT INTO PRODUCT (ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID) VALUES (:ID,:NAME,:QUANTITY,:PRICE,:SKU,:DEPARTMENT_ID)";
+	private final String INSERT_QUERY = "INSERT INTO PRODUCT (NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID) VALUES (:NAME,:QUANTITY,:PRICE,:SKU,:DEPARTMENT_ID)";
 	private final String SELECT_ALL_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID FROM PRODUCT ";
 	private final String SELECT_BY_ID_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID FROM PRODUCT WHERE ID = :ID";
 	private final String UPDATE_QUERY = "UPDATE PRODUCT SET ID=:ID,NAME=:NAME, QUANTITY=:QUANTITY,PRICE=:PRICE,SKU=:SKU,DEPARTMENT_ID=:DEPARTMENT_ID  WHERE ID = :ID";
 	private final String DELETE_QUERY = "DELETE FROM PRODUCT WHERE ID = :ID";
 
 	public ProductDAO create(ProductDAO productDAO) {
+		
 		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-		SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("ID", productDAO.getId())
+		SqlParameterSource namedParameters = new MapSqlParameterSource()
 				.addValue("NAME", productDAO.getName()).addValue("QUANTITY", productDAO.getQuantity())
 				.addValue("PRICE", productDAO.getPrice()).addValue("SKU", productDAO.getSku())
 				.addValue("DEPARTMENT_ID", productDAO.getDepartmentId());
 
 		namedParameterJdbcTemplate.update(INSERT_QUERY, namedParameters, keyHolder, new String[] { "ID" });
-		Long id = (Long) keyHolder.getKey();
-		productDAO.setId(id.intValue());
+		productDAO.setId(keyHolder.getKey().intValue());
 		return productDAO;
 	}
 

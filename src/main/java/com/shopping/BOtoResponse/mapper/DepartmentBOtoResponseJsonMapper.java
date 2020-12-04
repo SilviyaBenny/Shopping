@@ -1,4 +1,4 @@
-package com.shopping.botoresponse.mapper;
+package com.shopping.BOtoResponse.mapper;
 
 import org.springframework.stereotype.Component;
 
