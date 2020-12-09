@@ -59,13 +59,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
+			<!-- <exclusions>
 				<exclusion>
 					<groupId>org.junit.vintage</groupId>
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
-			</exclusions>
+			</exclusions> -->
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -75,6 +76,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+	    <groupId>com.h2database</groupId>
+	    <artifactId>h2</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -91,7 +96,26 @@
 					<finalName>shopping</finalName>
 				</configuration>
 			</plugin>
-		</plugins>
-	</build>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.7.201606060606</version>
+			<executions>
+				<execution>
+				<goals>
+					<goal>prepare-agent</goal>
+				</goals>
+				</execution>
+				<execution>
+					<id>report</id>
+					<phase>prepare-package</phase>
+				<goals>
+				<goal>report</goal>
+				</goals>
+				</execution>
+			</executions>
+			</plugin>
+		 </plugins>
+	 </build>
 
 </project>

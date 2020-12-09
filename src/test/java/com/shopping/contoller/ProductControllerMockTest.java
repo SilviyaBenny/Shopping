@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -16,20 +17,20 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
+import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
 import com.shopping.boservices.ProductBOServices;
-import com.shopping.botoresponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.controller.ProductController;
 import com.shopping.requestjson.ProductRequestJson;
-import com.shopping.requesttobo.mapper.ProductRequestJsonToBOMapper;
+import com.shopping.requesttobomapper.ProductRequestJsonToBOMapper;
 import com.shopping.responsejson.ProductResponseJson;
 
+@Ignore
 @RunWith(MockitoJUnitRunner.class)
-public class ProductControllerTest {
+public class ProductControllerMockTest  {
 
 	@InjectMocks
 	ProductController productController;
-
 	@Mock
 	ProductBOServices productBoService;
 	@Mock
