@@ -1,11 +1,15 @@
-package com.shopping.repository.dao;
+package com.shopping.repository.dto;
 
-public class DepartmentDAO {
+public class DepartmentDTO {
 
 	private int id;
 	private String departmentName;
 	private String description;
 
+	@Override
+	public String toString() {
+		return "DepartmentDTO [id=" + id + ", departmentName=" + departmentName + ", description=" + description + "]";
+	}
 	public int getId() {
 		return id;
 	}
@@ -30,8 +34,4 @@ public class DepartmentDAO {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		return "DepartmentDAO [id=" + id + ", departmentName=" + departmentName + ", description=" + description + "]";
-	}
 }

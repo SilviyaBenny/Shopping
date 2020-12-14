@@ -6,6 +6,10 @@ public class DepartmentBO {
 	private String departmentName;
 	private String description;
 
+	@Override
+	public String toString() {
+		return "DepartmentBO [id=" + id + ", departmentName=" + departmentName + ", description=" + description + "]";
+	}
 	public int getId() {
 		return id;
 	}
@@ -30,8 +34,4 @@ public class DepartmentBO {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		return "DepartmentBO [id=" + id + ", departmentName=" + departmentName + ", description=" + description + "]";
-	}
 }
