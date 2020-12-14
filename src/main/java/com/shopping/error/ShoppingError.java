@@ -9,27 +9,24 @@ import com.shopping.exception.ErrorType;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class ShoppingError implements Serializable {
-	
+
 	private ErrorCode errorCode = null;
-	
+
 	private ErrorType type = null;
-	
+
 	private String message = null;
-	
+
 	private String detailedMessage = null;
-	
-	
-	
+
 	public ShoppingError(ErrorCode errorCode, ErrorType type, String message) {
-		
+
 		this.errorCode = errorCode;
 		this.type = type;
 		this.message = message;
-
 	}
-	
-	public ShoppingError(ErrorCode errorCode,ErrorType type,  String message, String detailedMessage) {
-		
+
+	public ShoppingError(ErrorCode errorCode, ErrorType type, String message, String detailedMessage) {
+
 		this.errorCode = errorCode;
 		this.type = type;
 		this.message = message;
@@ -52,7 +49,4 @@ public class ShoppingError implements Serializable {
 	public String getDetailedMessage() {
 		return detailedMessage;
 	}
-	
-	
-
 }
