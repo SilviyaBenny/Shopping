@@ -8,27 +8,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
 import com.shopping.boservices.ProductBOServices;
+import com.shopping.controller.validator.ProductRequestValidator;
 import com.shopping.requestjson.ProductRequestJson;
 import com.shopping.requesttobomapper.ProductRequestJsonToBOMapper;
 import com.shopping.responsejson.ProductResponseJson;
 
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+
+public class ProductController implements IProductController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
+	@Autowired
+	ProductRequestValidator validator;
 	@Autowired
 	private ProductBOServices productBoService;
 	@Autowired
@@ -36,8 +33,8 @@ public class ProductController {
 	@Autowired
 	private ProductBOtoResponseJsonMapper respJsonMapper;
 
-	@PostMapping()
-	public ResponseEntity<ProductResponseJson> create(@RequestBody ProductRequestJson requestJson) {
+	public ResponseEntity<ProductResponseJson> create(ProductRequestJson requestJson) {
+		validator.validateProductRequest(requestJson);
 		LOGGER.info("Incoming Request" + requestJson);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.create(bo);
@@ -46,7 +43,6 @@ public class ProductController {
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
-	@GetMapping()
 	public ResponseEntity<List<ProductResponseJson>> getAll() {
 		LOGGER.info("Incoming Request");
 		List<ProductBO> boList = productBoService.getAll();
@@ -59,8 +55,7 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
-	@GetMapping("{id}")
-	public ResponseEntity<ProductResponseJson> getById(@PathVariable("id") int id) {
+	public ResponseEntity<ProductResponseJson> getById(int id) {
 		LOGGER.info("Incoming Request" + id);
 		ProductBO respBo = productBoService.getById(id);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
@@ -68,10 +63,9 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatus.OK).body(responseJson);
 	}
 
-	@PutMapping("{id}")
-	public ResponseEntity<ProductResponseJson> update(@PathVariable("id") int id,
-			@RequestBody ProductRequestJson requestJson) {
-
+	public ResponseEntity<ProductResponseJson> update(int id, @RequestBody ProductRequestJson requestJson) {
+		
+		validator.validateProductUpdate(requestJson);
 		LOGGER.info("Incoming Request" + id);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.update(bo, id);
@@ -80,8 +74,8 @@ public class ProductController {
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
-	@DeleteMapping("{id}")
-	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteById(int id) {
+
 		LOGGER.info("Incoming Request" + id);
 		int numberofRecords = productBoService.deleteById(id);
 		LOGGER.info("Outgoing Response" + numberofRecords);

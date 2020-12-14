@@ -12,9 +12,9 @@ public class ShoppingErrorResp implements Serializable{
 	
 	private String message;
 	
-	private String errorCode;
+	private ErrorCode errorCode;
 	
-	private String type;
+	private ErrorType type;
 	
 	@JsonProperty("errorDetails")
 	private List<ShoppingError> errorDetails;
@@ -27,19 +27,19 @@ public class ShoppingErrorResp implements Serializable{
 		this.message = message;
 	}
 
-	public String getErrorCode() {
+	public ErrorCode getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(String errorCode) {
+	public void setErrorCode(ErrorCode errorCode) {
 		this.errorCode = errorCode;
 	}
 
-	public String getType() {
+	public ErrorType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(ErrorType type) {
 		this.type = type;
 	}
 

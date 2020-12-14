@@ -8,27 +8,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.BOtoResponse.mapper.DepartmentBOtoResponseJsonMapper;
 import com.shopping.bo.DepartmentBO;
 import com.shopping.boservices.DepartmentBOServices;
+import com.shopping.controller.validator.DepartmentRequestValidator;
 import com.shopping.requestjson.DepartmentRequestJson;
 import com.shopping.requesttobomapper.DepartmentRequestJsonToBOMapper;
 import com.shopping.responsejson.DepartmentResponseJson;
 
-@RequestMapping("/department")
-@RestController
-public class DepartmentController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
+@RestController
+public class DepartmentController implements IDepartmentController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+	
+	@Autowired
+	private DepartmentRequestValidator validator;
 	@Autowired
 	private DepartmentBOServices departmentBOServices;
 	@Autowired
@@ -36,8 +33,8 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentBOtoResponseJsonMapper botoResponseMapper;
 
-	@PostMapping()
-	public ResponseEntity<DepartmentResponseJson> create(@RequestBody DepartmentRequestJson requestJson) {
+	public ResponseEntity<DepartmentResponseJson> create(DepartmentRequestJson requestJson) {
+		validator.validateDepartmentRequest(requestJson);
 		LOGGER.info("Incoming request " + requestJson);
 		DepartmentBO bo = requestJsonToBOMapper.mapObject(requestJson);
 		DepartmentBO respBO = departmentBOServices.create(bo);
@@ -46,7 +43,6 @@ public class DepartmentController {
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
 
-	@GetMapping()
 	public ResponseEntity<List<DepartmentResponseJson>> getAll() {
 		LOGGER.info("Incoming request ");
 		List<DepartmentBO> boList = departmentBOServices.getAll();
@@ -59,8 +55,7 @@ public class DepartmentController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
-	@GetMapping("{id}")
-	public ResponseEntity<DepartmentResponseJson> getById(@PathVariable("id") int id) {
+	public ResponseEntity<DepartmentResponseJson> getById(int id) {
 		LOGGER.info("Incoming request " + id);
 		DepartmentBO respBO = departmentBOServices.getById(id);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
@@ -68,9 +63,9 @@ public class DepartmentController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJson);
 	}
 
-	@PutMapping("{id}")
-	public ResponseEntity<DepartmentResponseJson> update(@PathVariable("id") int id,
+	public ResponseEntity<DepartmentResponseJson> update(int id,
 			@RequestBody DepartmentRequestJson requestJson) {
+		validator.validateDepartmentUpdate(requestJson);
 		LOGGER.info("Incoming request " + requestJson);
 		DepartmentBO departmentBO = requestJsonToBOMapper.mapObject(requestJson);
 		DepartmentBO respBO = departmentBOServices.update(departmentBO, id);
@@ -78,9 +73,8 @@ public class DepartmentController {
 		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
-
-	@DeleteMapping("{id}")
-	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) {
+	
+	public ResponseEntity<Void> deleteById(int id) {
 		LOGGER.info("Incoming Request" + id);
 		int numberofRecords = departmentBOServices.deleteById(id);
 		LOGGER.info("Outgoing Response" + numberofRecords);

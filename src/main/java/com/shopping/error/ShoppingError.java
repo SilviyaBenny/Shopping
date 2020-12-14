@@ -3,14 +3,16 @@ package com.shopping.error;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.shopping.exception.ErrorCode;
+import com.shopping.exception.ErrorType;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class ShoppingError implements Serializable {
 	
-	private String errorCode = null;
+	private ErrorCode errorCode = null;
 	
-	private String type = null;
+	private ErrorType type = null;
 	
 	private String message = null;
 	
@@ -18,7 +20,7 @@ public class ShoppingError implements Serializable {
 	
 	
 	
-	public ShoppingError(String errorCode, String type, String message) {
+	public ShoppingError(ErrorCode errorCode, ErrorType type, String message) {
 		
 		this.errorCode = errorCode;
 		this.type = type;
@@ -26,7 +28,7 @@ public class ShoppingError implements Serializable {
 
 	}
 	
-	public ShoppingError(String errorCode,String type,  String message, String detailedMessage) {
+	public ShoppingError(ErrorCode errorCode,ErrorType type,  String message, String detailedMessage) {
 		
 		this.errorCode = errorCode;
 		this.type = type;
@@ -35,11 +37,11 @@ public class ShoppingError implements Serializable {
 		this.detailedMessage = detailedMessage;
 	}
 
-	public String getErrorCode() {
+	public ErrorCode getErrorCode() {
 		return errorCode;
 	}
 
-	public String getType() {
+	public ErrorType getType() {
 		return type;
 	}
 

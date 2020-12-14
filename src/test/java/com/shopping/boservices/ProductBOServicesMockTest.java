@@ -25,7 +25,7 @@ import com.shopping.repository.dao.ProductDAO;
 
 @Ignore
 @RunWith(MockitoJUnitRunner.class)
-public class ProductBOServicesTest {
+public class ProductBOServicesMockTest {
 	@InjectMocks
 	ProductBOServices productBoServices;
 
