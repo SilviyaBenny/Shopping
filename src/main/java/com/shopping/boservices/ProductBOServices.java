@@ -17,13 +17,15 @@ import com.shopping.config.EntityRequstContext;
 import com.shopping.controller.ProductController;
 import com.shopping.daotobo.mapper.ProductRepositoryDAOtoBOMapper;
 import com.shopping.error.ShoppingError;
+import com.shopping.exception.DatabaseException;
+import com.shopping.exception.ErrorCode;
+import com.shopping.exception.ErrorType;
 import com.shopping.exception.ItemNotFoundException;
-import com.shopping.exception.ShoppingControllerAdvice;
 import com.shopping.repository.ProductRepository;
 import com.shopping.repository.dao.ProductDAO;
 
 @Component
-public class ProductBOServices {
+public class ProductBOServices implements IProductBOServices {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
@@ -68,25 +70,34 @@ public class ProductBOServices {
 		} catch (EmptyResultDataAccessException e) {
 
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
-			entityRequstContext.addError(new ShoppingError("1000", "Object not found", "VALIDATION"));
-			entityRequstContext.addError(new ShoppingError("1001", "Length is out of control", "VALIDATION"));
-			throw new ItemNotFoundException("1000", "VALIDATION", "Item with id " + id + "not found");
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Object not found"));
+			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"Item with id " + id + " not found");
 		}
-		
 	}
 
 	public ProductBO update(ProductBO bo, int id) {
 		LOGGER.info("Incoming request:" + id);
+		try {
 		ProductDAO dao = daoMapper.mapObject(bo);
 		ProductDAO respDao = productRepository.update(dao, id);
 		ProductBO respBO = daoToBoMapper.mapObject(respDao);
 		LOGGER.info("Outugoing response:" + respBO);
 		return respBO;
+		}catch (DatabaseException e) {
+
+			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Object not found"));
+			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"Item with id " + id + " not found");
+		}
 	}
 
 	public int deleteById(int id) {
 		LOGGER.info("Incoming request:" + id);
-		LOGGER.info("Outgoing response:" + id);
-		return productRepository.deleteById(id);
+		int numberofRecords = productRepository.deleteById(id);
+		LOGGER.info("Outgoing response:" + numberofRecords);
+		return numberofRecords;
+		
 	}
 }

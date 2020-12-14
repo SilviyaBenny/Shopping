@@ -15,8 +15,8 @@ public class ShoppingControllerAdvice {
 	@Autowired
 	private Provider<EntityRequstContext> entityRequstContextProvider;
 	
-	@ExceptionHandler(value = ItemNotFoundException.class)	
-	public ResponseEntity<Object> exception(ItemNotFoundException infe){
+	@ExceptionHandler(value = ShoppingException.class)	
+	public ResponseEntity<Object> exception(ShoppingException shopexcep){
 		
 		ShoppingErrorResp errorResp = new ShoppingErrorResp();
 		EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
@@ -25,11 +25,11 @@ public class ShoppingControllerAdvice {
 			errorResp.setErrorDetails(entityRequstContext.getErrors());
 		}
 		
-		errorResp.setErrorCode(infe.getErrorCode());
-		errorResp.setType(infe.getType());
-		errorResp.setMessage(infe.getMessage());
+		errorResp.setErrorCode(shopexcep.getErrorCode());
+		errorResp.setType(shopexcep.getType());
+		errorResp.setMessage(shopexcep.getMessage());
 		
-		return ResponseEntity.status(infe.getHttpStatus()).body(errorResp);
+		return ResponseEntity.status(shopexcep.getHttpStatus()).body(errorResp);
 		
 	}
 

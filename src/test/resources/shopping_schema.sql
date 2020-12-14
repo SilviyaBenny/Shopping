@@ -9,3 +9,9 @@ create table product(
    PRIMARY KEY (ID)
 );
 
+create table department(
+	ID bigint auto_increment ,
+	DEPARTMENT_NAME VARCHAR(30),
+	DESCRIPTION VARCHAR(250)
+	);
+	

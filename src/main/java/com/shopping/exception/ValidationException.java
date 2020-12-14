@@ -2,18 +2,18 @@ package com.shopping.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class ItemNotFoundException extends ShoppingException {
+public class ValidationException extends ShoppingException {
 
-	private HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+	private HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
-	public ItemNotFoundException(ErrorCode errorCode, ErrorType type, String message) {
+	public ValidationException(ErrorCode errorCode, ErrorType type, String message) {
 		super(message);
 		this.errorCode = errorCode;
 		this.type = type;
 		this.message = message;
 	}
 
-	public ItemNotFoundException(ErrorCode errorCode, ErrorType type, String message, String detailedMessage) {
+	public ValidationException(ErrorCode errorCode, ErrorType type, String message, String detailedMessage) {
 		super(message);
 		this.errorCode = errorCode;
 		this.type = type;

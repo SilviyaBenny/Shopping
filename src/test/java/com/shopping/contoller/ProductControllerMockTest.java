@@ -9,25 +9,31 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.springframework.http.ResponseEntity;
 
 import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
 import com.shopping.boservices.ProductBOServices;
 import com.shopping.controller.ProductController;
+import com.shopping.controller.validator.ProductRequestValidator;
 import com.shopping.requestjson.ProductRequestJson;
 import com.shopping.requesttobomapper.ProductRequestJsonToBOMapper;
 import com.shopping.responsejson.ProductResponseJson;
-
 @Ignore
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
-public class ProductControllerMockTest  {
+public class ProductControllerMockTest {
 
 	@InjectMocks
 	ProductController productController;
@@ -37,6 +43,8 @@ public class ProductControllerMockTest  {
 	ProductRequestJsonToBOMapper jsontoBO;
 	@Mock
 	ProductBOtoResponseJsonMapper respJsonMapper;
+	@Mock
+	ProductRequestValidator validator;
 
 	@BeforeEach
 	public void init() {
@@ -54,6 +62,7 @@ public class ProductControllerMockTest  {
 		productResponseJson.setDepartmentId(20);
 
 		ProductBO productBO = new ProductBO();
+		productBO.setDepartmentId(1);
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		when(productBoService.create(Mockito.<ProductBO>any())).thenReturn(productBO);
 		when(jsontoBO.mapObject(Mockito.<ProductRequestJson>any())).thenReturn(productBO);
@@ -86,8 +95,7 @@ public class ProductControllerMockTest  {
 	@Test
 	public void getAllTest() {
 
-	ProductResponseJson productResponseJson = new ProductResponseJson();
-	
+		ProductResponseJson productResponseJson = new ProductResponseJson();
 		productResponseJson.setId(1);
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(200);
@@ -104,7 +112,7 @@ public class ProductControllerMockTest  {
 		productBO.setSku("00A");
 		productBO.setDepartmentId(10);
 		productBOList.add(productBO);
-		
+
 		when(productBoService.getAll()).thenReturn(productBOList);
 		when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
 
@@ -127,7 +135,7 @@ public class ProductControllerMockTest  {
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		when(productBoService.update(Mockito.<ProductBO>any(), Mockito.anyInt())).thenReturn(productBO);
 		when(jsontoBO.mapObject(Mockito.<ProductRequestJson>any())).thenReturn(productBO);
-			when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
+		when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
 
 		ResponseEntity<ProductResponseJson> resp = productController.update(id, productRequestJson);
 		assertNotNull(resp);

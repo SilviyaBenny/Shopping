@@ -9,6 +9,9 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.shopping.exception.DatabaseException;
+import com.shopping.exception.ErrorCode;
+import com.shopping.exception.ErrorType;
 import com.shopping.repository.dao.ProductDAO;
 import com.shopping.rowmapper.ProductRowMapper;
 
@@ -52,14 +55,17 @@ public class ProductRepository {
 				.addValue("PRICE", productDAO.getPrice()).addValue("SKU", productDAO.getSku())
 				.addValue("DEPARTMENT_ID", productDAO.getDepartmentId());
 
-		namedParameterJdbcTemplate.update(UPDATE_QUERY, namedParameters);
+		int recordsUpdated = namedParameterJdbcTemplate.update(UPDATE_QUERY, namedParameters);
 		productDAO.setId(id);
+		if(recordsUpdated!=1) {
+			throw new DatabaseException(ErrorCode.SHOPPING_DATABASE_100, ErrorType.DATABASE,
+					"Item with id " + id + " not found");
+		}
 		return productDAO;
 	}
 
 	public int deleteById(int id) {
 		SqlParameterSource namedParameters = new MapSqlParameterSource("ID", id);
-		namedParameterJdbcTemplate.update(DELETE_QUERY, namedParameters);
-		return id;
+		return namedParameterJdbcTemplate.update(DELETE_QUERY, namedParameters);
 	}
 }

@@ -5,28 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
-import com.shopping.boservices.ProductBOServices;
 import com.shopping.controller.ProductController;
 import com.shopping.exception.ItemNotFoundException;
 import com.shopping.requestjson.ProductRequestJson;
-import com.shopping.requesttobomapper.ProductRequestJsonToBOMapper;
 import com.shopping.responsejson.ProductResponseJson;
 
 public class ProductCURDTest extends TestBase {
 	@Autowired
 	ProductController productController;
-	@Autowired
-	ProductBOServices productBoService;
-	@Autowired
-	ProductRequestJsonToBOMapper jsontoBO;
-	@Autowired
-	ProductBOtoResponseJsonMapper respJsonMapper;
 
 	@Test
-
 	public void test() {
 
 		ProductRequestJson productRequestJson = new ProductRequestJson();
@@ -37,14 +28,13 @@ public class ProductCURDTest extends TestBase {
 		productRequestJson.setDepartmentId(20);
 
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
-		assertRequest(productRequestJson, resp.getBody());
-		
-	    int createdId = resp.getBody().getId();
-		
-		resp = productController.getById(createdId);
-		assertRequest(productRequestJson, resp.getBody());
+		assertResponse(productRequestJson, resp.getBody());
 
-		
+		int createdId = resp.getBody().getId();
+
+		resp = productController.getById(createdId);
+		assertResponse(productRequestJson, resp.getBody());
+
 		productRequestJson.setName("Pen");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
@@ -52,19 +42,20 @@ public class ProductCURDTest extends TestBase {
 		productRequestJson.setDepartmentId(20);
 
 		resp = productController.update(createdId, productRequestJson);
-		assertRequest(productRequestJson, resp.getBody());
+		assertResponse(productRequestJson, resp.getBody());
 
-		productController.deleteById(createdId);
-		assertRequest(productRequestJson, resp.getBody());
+		ResponseEntity<Void> deleteRsp = productController.deleteById(createdId);
+		assertEquals(HttpStatus.NO_CONTENT, deleteRsp.getStatusCode());
+		assertResponse(productRequestJson, resp.getBody());
 
 		try {
 			resp = productController.getById(createdId);
-		}catch (ItemNotFoundException e) {
-			
+		} catch (ItemNotFoundException e) {
+
 		}
 	}
 
-	private void assertRequest(ProductRequestJson productRequestJson, ProductResponseJson resp) {
+	private void assertResponse(ProductRequestJson productRequestJson, ProductResponseJson resp) {
 		assertNotNull(productRequestJson);
 		assertNotNull(resp);
 		assertEquals(productRequestJson.getName(), resp.getName());
