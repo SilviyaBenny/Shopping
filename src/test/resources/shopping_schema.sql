@@ -8,7 +8,7 @@ create table product(
    DEPARTMENT_ID INT ,
    PRIMARY KEY (ID)
 );
-
+alter table product add DESCRIPTION varchar(250);
 create table department(
 	ID bigint auto_increment ,
 	DEPARTMENT_NAME VARCHAR(30),

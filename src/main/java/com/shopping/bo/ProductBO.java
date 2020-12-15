@@ -8,12 +8,12 @@ public class ProductBO {
 	private float price;
 	private String sku;
 	private int departmentId;
+	private String description;
 
-	
 	@Override
 	public String toString() {
 		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku=" + sku
-				+ " ,departmentId=" + departmentId + "]";
+				+ ", departmentId=" + departmentId + ", description=" + description + "]";
 	}
 
 	public int getId() {
@@ -61,6 +61,14 @@ public class ProductBO {
 
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 

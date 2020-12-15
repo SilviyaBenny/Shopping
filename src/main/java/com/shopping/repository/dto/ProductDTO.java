@@ -8,10 +8,12 @@ public class ProductDTO {
 	private float price;
 	private String sku;
 	private int departmentId;
+	private String description;
+	
 	@Override
 	public String toString() {
 		return "ProductDTO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku="
-				+ sku + " ,departmentId=" + departmentId + "]";
+				+ sku + " ,departmentId=" + departmentId + ",description=" + description +"]";
 	}
 
 	public int getId() {
@@ -60,6 +62,14 @@ public class ProductDTO {
 
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

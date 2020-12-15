@@ -60,6 +60,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setPrice(50);
 		productResponseJson.setSku("00B");
 		productResponseJson.setDepartmentId(20);
+		productResponseJson.setDescription("Stationery Items");
 
 		ProductBO productBO = new ProductBO();
 		productBO.setDepartmentId(1);
@@ -83,6 +84,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setPrice(20);
 		productResponseJson.setSku("00A");
 		productResponseJson.setDepartmentId(10);
+		productResponseJson.setDescription("Stationery Items");
 
 		ProductBO productBO = new ProductBO();
 		when(productBoService.getById(Mockito.anyInt())).thenReturn(productBO);
@@ -102,6 +104,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setPrice(100);
 		productResponseJson.setSku("00A");
 		productResponseJson.setDepartmentId(20);
+		productResponseJson.setDescription("Stationery Items");
 
 		List<ProductBO> productBOList = new ArrayList<>();
 		ProductBO productBO = new ProductBO();
@@ -111,6 +114,7 @@ public class ProductControllerMockTest {
 		productBO.setPrice(100);
 		productBO.setSku("00A");
 		productBO.setDepartmentId(10);
+		productBO.setDescription("Stationery Items");
 		productBOList.add(productBO);
 
 		when(productBoService.getAll()).thenReturn(productBOList);
@@ -130,6 +134,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setPrice(5000);
 		productResponseJson.setSku("00B");
 		productResponseJson.setDepartmentId(20);
+		productResponseJson.setDescription("Stationery Items");
 
 		ProductBO productBO = new ProductBO();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
