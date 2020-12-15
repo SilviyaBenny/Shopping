@@ -6,6 +6,11 @@ public class DepartmentRequestJson {
 	private String departmentName;
 	private String description;
 
+	@Override
+	public String toString() {
+		return "DepartmentRequestJson [id=" + id + ", departmentName=" + departmentName + ", description=" + description
+				+ "]";
+	}
 	public int getId() {
 		return id;
 	}
@@ -29,11 +34,4 @@ public class DepartmentRequestJson {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	@Override
-	public String toString() {
-		return "DepartmentRequestJson [id=" + id + ", departmentName=" + departmentName + ", description=" + description
-				+ "]";
-	}
-
 }

@@ -1,6 +1,6 @@
-package com.shopping.repository.dao;
+package com.shopping.repository.dto;
 
-public class ProductDAO {
+public class ProductDTO {
 
 	private int id;
 	private String name;
@@ -10,7 +10,7 @@ public class ProductDAO {
 	private int departmentId;
 	@Override
 	public String toString() {
-		return "ProductDAO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku="
+		return "ProductDTO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku="
 				+ sku + " ,departmentId=" + departmentId + "]";
 	}
 

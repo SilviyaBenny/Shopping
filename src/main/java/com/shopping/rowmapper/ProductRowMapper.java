@@ -5,19 +5,19 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.shopping.repository.dao.ProductDAO;
+import com.shopping.repository.dto.ProductDTO;
 
-public class ProductRowMapper implements RowMapper<ProductDAO> {
+public class ProductRowMapper implements RowMapper<ProductDTO> {
 	@Override
-	public ProductDAO mapRow(ResultSet rs, int rowNum) throws SQLException {
-		ProductDAO productdao = new ProductDAO();
+	public ProductDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ProductDTO productDTO = new ProductDTO();
 
-		productdao.setId(rs.getInt("ID"));
-		productdao.setName(rs.getString("NAME"));
-		productdao.setQuantity(rs.getInt("QUANTITY"));
-		productdao.setPrice(rs.getFloat("PRICE"));
-		productdao.setSku(rs.getString("SKU"));
-		productdao.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
-		return productdao;
+		productDTO.setId(rs.getInt("ID"));
+		productDTO.setName(rs.getString("NAME"));
+		productDTO.setQuantity(rs.getInt("QUANTITY"));
+		productDTO.setPrice(rs.getFloat("PRICE"));
+		productDTO.setSku(rs.getString("SKU"));
+		productDTO.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
+		return productDTO;
 	}
 }

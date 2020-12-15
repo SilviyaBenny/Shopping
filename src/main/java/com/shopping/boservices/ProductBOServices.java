@@ -12,17 +12,17 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import com.shopping.bo.ProductBO;
-import com.shopping.botodao.mapper.ProductBOtoRepositoryDAOMapper;
+import com.shopping.botodto.mapper.ProductBOtoDTOMapper;
 import com.shopping.config.EntityRequstContext;
 import com.shopping.controller.ProductController;
-import com.shopping.daotobo.mapper.ProductRepositoryDAOtoBOMapper;
+import com.shopping.dtotobo.mapper.ProductDTOtoBOMapper;
 import com.shopping.error.ShoppingError;
 import com.shopping.exception.DatabaseException;
 import com.shopping.exception.ErrorCode;
 import com.shopping.exception.ErrorType;
 import com.shopping.exception.ItemNotFoundException;
-import com.shopping.repository.ProductRepository;
-import com.shopping.repository.dao.ProductDAO;
+import com.shopping.repository.ProductDAO;
+import com.shopping.repository.dto.ProductDTO;
 
 @Component
 public class ProductBOServices implements IProductBOServices {
@@ -30,30 +30,30 @@ public class ProductBOServices implements IProductBOServices {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProductDAO productDAO;
 	@Autowired
-	private ProductBOtoRepositoryDAOMapper daoMapper;
+	private ProductBOtoDTOMapper boTodtoMapper;
 	@Autowired
-	private ProductRepositoryDAOtoBOMapper daoToBoMapper;
+	private ProductDTOtoBOMapper dtoToboMapper;
 
 	@Autowired
 	private Provider<EntityRequstContext> entityRequstContextProvider;
 
 	public ProductBO create(ProductBO bo) {
 		LOGGER.info("Incoming request:" + bo);
-		ProductDAO dao = daoMapper.mapObject(bo);
-		ProductDAO respDao = productRepository.create(dao);
-		ProductBO respBO = daoToBoMapper.mapObject(respDao);
+		ProductDTO dto = boTodtoMapper.mapObject(bo);
+		ProductDTO respDTO = productDAO.create(dto);
+		ProductBO respBO = dtoToboMapper.mapObject(respDTO);
 		LOGGER.info("Outgoing response:" + respBO);
 		return respBO;
 	}
 
 	public List<ProductBO> getAll() {
 		LOGGER.info("Incoming request");
-		List<ProductDAO> productDAOList = productRepository.getAll();
+		List<ProductDTO> productDTOList = productDAO.getAll();
 		List<ProductBO> boList = new ArrayList<>();
-		for (ProductDAO productDAO : productDAOList) {
-			ProductBO respBO = daoToBoMapper.mapObject(productDAO);
+		for (ProductDTO productDTO : productDTOList) {
+			ProductBO respBO = dtoToboMapper.mapObject(productDTO);
 			boList.add(respBO);
 		}
 		LOGGER.info("Outgoing response:" + boList);
@@ -63,8 +63,8 @@ public class ProductBOServices implements IProductBOServices {
 	public ProductBO getById(int id) {
 		LOGGER.info("Incoming request:" + id);
 		try {
-			ProductDAO productDAO = productRepository.getById(id);
-			ProductBO respBO = daoToBoMapper.mapObject(productDAO);
+			ProductDTO productDTO = productDAO.getById(id);
+			ProductBO respBO = dtoToboMapper.mapObject(productDTO);
 			LOGGER.info("Outgoing response:" + respBO);
 			return respBO;
 		} catch (EmptyResultDataAccessException e) {
@@ -79,9 +79,9 @@ public class ProductBOServices implements IProductBOServices {
 	public ProductBO update(ProductBO bo, int id) {
 		LOGGER.info("Incoming request:" + id);
 		try {
-		ProductDAO dao = daoMapper.mapObject(bo);
-		ProductDAO respDao = productRepository.update(dao, id);
-		ProductBO respBO = daoToBoMapper.mapObject(respDao);
+		ProductDTO dto = boTodtoMapper.mapObject(bo);
+		ProductDTO respDTO = productDAO.update(dto, id);
+		ProductBO respBO = dtoToboMapper.mapObject(respDTO);
 		LOGGER.info("Outugoing response:" + respBO);
 		return respBO;
 		}catch (DatabaseException e) {
@@ -95,7 +95,7 @@ public class ProductBOServices implements IProductBOServices {
 
 	public int deleteById(int id) {
 		LOGGER.info("Incoming request:" + id);
-		int numberofRecords = productRepository.deleteById(id);
+		int numberofRecords = productDAO.deleteById(id);
 		LOGGER.info("Outgoing response:" + numberofRecords);
 		return numberofRecords;
 		
