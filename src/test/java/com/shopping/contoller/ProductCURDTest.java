@@ -26,6 +26,7 @@ public class ProductCURDTest extends TestBase {
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
 		productRequestJson.setDepartmentId(20);
+		productRequestJson.setDescription("Stationery Items");
 
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertResponse(productRequestJson, resp.getBody());
@@ -40,6 +41,7 @@ public class ProductCURDTest extends TestBase {
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
 		productRequestJson.setDepartmentId(20);
+		productRequestJson.setDescription("Stationery Items");
 
 		resp = productController.update(createdId, productRequestJson);
 		assertResponse(productRequestJson, resp.getBody());
@@ -63,6 +65,7 @@ public class ProductCURDTest extends TestBase {
 		assertEquals(productRequestJson.getPrice(), resp.getPrice());
 		assertEquals(productRequestJson.getSku(), resp.getSku());
 		assertEquals(productRequestJson.getDepartmentId(), resp.getDepartmentId());
+		assertEquals(productRequestJson.getDescription(), resp.getDescription());
 
 	}
 

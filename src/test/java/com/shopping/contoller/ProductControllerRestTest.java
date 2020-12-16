@@ -26,6 +26,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
 		productRequestJson.setDepartmentId(10);
+		productRequestJson.setDescription("Stationery Items");
 
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertNotNull(resp);
@@ -55,6 +56,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
 		productRequestJson.setDepartmentId(10);
+		productRequestJson.setDescription("Stationery Items");
 
 		ResponseEntity<ProductResponseJson> resp = productController.update(id, productRequestJson);
 		assertNotNull(resp);

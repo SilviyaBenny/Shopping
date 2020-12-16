@@ -21,10 +21,10 @@ public class ProductDAO {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	private final String INSERT_QUERY = "INSERT INTO PRODUCT (NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID) VALUES (:NAME,:QUANTITY,:PRICE,:SKU,:DEPARTMENT_ID)";
-	private final String SELECT_ALL_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID FROM PRODUCT ";
-	private final String SELECT_BY_ID_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID FROM PRODUCT WHERE ID = :ID";
-	private final String UPDATE_QUERY = "UPDATE PRODUCT SET ID=:ID,NAME=:NAME, QUANTITY=:QUANTITY,PRICE=:PRICE,SKU=:SKU,DEPARTMENT_ID=:DEPARTMENT_ID  WHERE ID = :ID";
+	private final String INSERT_QUERY = "INSERT INTO PRODUCT (NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID,DESCRIPTION) VALUES (:NAME,:QUANTITY,:PRICE,:SKU,:DEPARTMENT_ID,:DESCRIPTION)";
+	private final String SELECT_ALL_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID,DESCRIPTION FROM PRODUCT ";
+	private final String SELECT_BY_ID_QUERY = "SELECT ID,NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID,DESCRIPTION FROM PRODUCT WHERE ID = :ID";
+	private final String UPDATE_QUERY = "UPDATE PRODUCT SET ID=:ID,NAME=:NAME, QUANTITY=:QUANTITY,PRICE=:PRICE,SKU=:SKU,DEPARTMENT_ID=:DEPARTMENT_ID,DESCRIPTION=:DESCRIPTION  WHERE ID = :ID";
 	private final String DELETE_QUERY = "DELETE FROM PRODUCT WHERE ID = :ID";
 
 	public ProductDTO create(ProductDTO productDTO) {
@@ -33,7 +33,8 @@ public class ProductDAO {
 		SqlParameterSource namedParameters = new MapSqlParameterSource()
 				.addValue("NAME", productDTO.getName()).addValue("QUANTITY", productDTO.getQuantity())
 				.addValue("PRICE", productDTO.getPrice()).addValue("SKU", productDTO.getSku())
-				.addValue("DEPARTMENT_ID", productDTO.getDepartmentId());
+				.addValue("DEPARTMENT_ID", productDTO.getDepartmentId())
+				.addValue("DESCRIPTION", productDTO.getDescription());
 
 		namedParameterJdbcTemplate.update(INSERT_QUERY, namedParameters, keyHolder, new String[] { "ID" });
 		productDTO.setId(keyHolder.getKey().intValue());
@@ -53,7 +54,8 @@ public class ProductDAO {
 		SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("ID", id)
 				.addValue("NAME", productDTO.getName()).addValue("QUANTITY", productDTO.getQuantity())
 				.addValue("PRICE", productDTO.getPrice()).addValue("SKU", productDTO.getSku())
-				.addValue("DEPARTMENT_ID", productDTO.getDepartmentId());
+				.addValue("DEPARTMENT_ID", productDTO.getDepartmentId())
+				.addValue("DESCRIPTION", productDTO.getDescription());
 
 		int recordsUpdated = namedParameterJdbcTemplate.update(UPDATE_QUERY, namedParameters);
 		productDTO.setId(id);

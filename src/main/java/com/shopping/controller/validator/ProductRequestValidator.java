@@ -41,7 +41,9 @@ public class ProductRequestValidator {
 		if (requestJson.getSku().length() > 30) {
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "SKU Length should be less than 30"));
 		} 
-		
+		if (requestJson.getDescription().length() > 250) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Description Length should be less than 30"));
+		} 
 		if (!entityRequstContext.getErrors().isEmpty()) {
 			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Validation of input field");
 		}
@@ -68,6 +70,9 @@ public class ProductRequestValidator {
 		} 
 		if (requestJson.getSku().length() > 30) {
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "SKU Length should be less than 30"));
+		} 
+		if (requestJson.getDescription().length() > 250) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Description Length should be less than 30"));
 		} 
 		if (!entityRequstContext.getErrors().isEmpty()) {
 			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Validation of input field");

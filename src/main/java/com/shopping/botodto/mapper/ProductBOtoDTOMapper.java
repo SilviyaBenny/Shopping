@@ -16,6 +16,7 @@ public class ProductBOtoDTOMapper {
 		dto.setQuantity(productBO.getQuantity());
 		dto.setSku(productBO.getSku());
 		dto.setDepartmentId(productBO.getDepartmentId());
+		dto.setDescription(productBO.getDescription());
 		return dto;
 	}
 }
