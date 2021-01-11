@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class ProductControllerRestTest extends TestBase {
 	ProductController productController;
 	
 	@Test
+	@Order(1)
 	public void createTest() {
 
 		ProductRequestJson productRequestJson = new ProductRequestJson();
@@ -34,6 +36,7 @@ public class ProductControllerRestTest extends TestBase {
 	}
 
 	@Test
+	@Order(2)
 	public void getAllTest() {
 
 		ResponseEntity<List<ProductResponseJson>> resp = productController.getAll();
@@ -41,15 +44,17 @@ public class ProductControllerRestTest extends TestBase {
 	}
 	
 	@Test
+	@Order(3)
 	public void getByIdTest() {
 
-		ResponseEntity<ProductResponseJson> resp = productController.getById(2);
+		ResponseEntity<ProductResponseJson> resp = productController.getById("ytu5683746etfayufgya");
 		assertNotNull(resp);
 	}
 
 	@Test
+	@Order(4)
 	public void updateTest() {
-		int id = 2;
+		
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		productRequestJson.setName("Pen");
 		productRequestJson.setQuantity(90);
@@ -58,14 +63,15 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setDepartmentId(10);
 		productRequestJson.setDescription("Stationery Items");
 
-		ResponseEntity<ProductResponseJson> resp = productController.update(id, productRequestJson);
+		ResponseEntity<ProductResponseJson> resp = productController.update("ytu5683746etfayufgya", productRequestJson);
 		assertNotNull(resp);
 	}
 
 	@Test
+	@Order(5)
 	public void deleteByIdTest() {
 
-		ResponseEntity<Void> resp = productController.deleteById(5);
+		ResponseEntity<Void> resp = productController.deleteById("ytu5683746etfayufgya");
 		assertNotNull(resp);
 	}
 

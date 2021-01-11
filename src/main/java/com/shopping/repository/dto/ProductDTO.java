@@ -1,8 +1,10 @@
 package com.shopping.repository.dto;
 
+import java.util.UUID;
+
 public class ProductDTO {
 
-	private int id;
+	private String recordId;
 	private String name;
 	private int quantity;
 	private float price;
@@ -12,16 +14,16 @@ public class ProductDTO {
 	
 	@Override
 	public String toString() {
-		return "ProductDTO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku="
+		return "ProductDTO [recordId=" + recordId + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku="
 				+ sku + " ,departmentId=" + departmentId + ",description=" + description +"]";
 	}
 
-	public int getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public String getName() {
@@ -71,5 +73,7 @@ public class ProductDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	
 	
 }

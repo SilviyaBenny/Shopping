@@ -55,28 +55,28 @@ public class DepartmentController implements IDepartmentController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
-	public ResponseEntity<DepartmentResponseJson> getById(int id) {
-		LOGGER.info("Incoming request " + id);
-		DepartmentBO respBO = departmentBOServices.getById(id);
+	public ResponseEntity<DepartmentResponseJson> getById(String recordId) {
+		LOGGER.info("Incoming request " + recordId);
+		DepartmentBO respBO = departmentBOServices.getById(recordId);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
 		LOGGER.info("Outgoing Response " + respJson);
 		return ResponseEntity.status(HttpStatus.OK).body(respJson);
 	}
 
-	public ResponseEntity<DepartmentResponseJson> update(int id,
+	public ResponseEntity<DepartmentResponseJson> update(String recordId,
 			@RequestBody DepartmentRequestJson requestJson) {
 		validator.validateDepartmentUpdate(requestJson);
 		LOGGER.info("Incoming request " + requestJson);
 		DepartmentBO departmentBO = requestJsonToBOMapper.mapObject(requestJson);
-		DepartmentBO respBO = departmentBOServices.update(departmentBO, id);
+		DepartmentBO respBO = departmentBOServices.update(departmentBO, recordId);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
 		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<Void> deleteById(int id) {
-		LOGGER.info("Incoming Request" + id);
-		int numberofRecords = departmentBOServices.deleteById(id);
+	public ResponseEntity<Void> deleteById(String recordId) {
+		LOGGER.info("Incoming Request" + recordId);
+		int numberofRecords = departmentBOServices.deleteById(recordId);
 		LOGGER.info("Outgoing Response" + numberofRecords);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

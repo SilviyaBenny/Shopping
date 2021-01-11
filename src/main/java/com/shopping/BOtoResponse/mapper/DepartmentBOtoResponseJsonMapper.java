@@ -10,7 +10,7 @@ public class DepartmentBOtoResponseJsonMapper {
 	
 	public DepartmentResponseJson mapObject(DepartmentBO bo) {
 		DepartmentResponseJson responseJson = new DepartmentResponseJson();
-		responseJson.setId(bo.getId());
+		responseJson.setRecordId(bo.getRecordId());
 		responseJson.setDepartmentName(bo.getDepartmentName());
 		responseJson.setDescription(bo.getDescription());
 		

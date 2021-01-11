@@ -1,5 +1,6 @@
 package com.shopping.rowmapper;
 
+import java.util.UUID;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,7 +13,7 @@ public class ProductRowMapper implements RowMapper<ProductDTO> {
 	public ProductDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ProductDTO productDTO = new ProductDTO();
 
-		productDTO.setId(rs.getInt("ID"));
+		productDTO.setRecordId(rs.getString("RECORD_ID"));
 		productDTO.setName(rs.getString("NAME"));
 		productDTO.setQuantity(rs.getInt("QUANTITY"));
 		productDTO.setPrice(rs.getFloat("PRICE"));

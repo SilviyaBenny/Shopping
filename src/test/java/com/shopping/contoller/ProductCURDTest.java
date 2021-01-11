@@ -31,7 +31,7 @@ public class ProductCURDTest extends TestBase {
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertResponse(productRequestJson, resp.getBody());
 
-		int createdId = resp.getBody().getId();
+		String createdId = resp.getBody().getRecordId();
 
 		resp = productController.getById(createdId);
 		assertResponse(productRequestJson, resp.getBody());

@@ -55,29 +55,29 @@ public class ProductController implements IProductController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
-	public ResponseEntity<ProductResponseJson> getById(int id) {
-		LOGGER.info("Incoming Request" + id);
-		ProductBO respBo = productBoService.getById(id);
+	public ResponseEntity<ProductResponseJson> getById(String recordId) {
+		LOGGER.info("Incoming Request" + recordId);
+		ProductBO respBo = productBoService.getById(recordId);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
 		return ResponseEntity.status(HttpStatus.OK).body(responseJson);
 	}
 
-	public ResponseEntity<ProductResponseJson> update(int id, @RequestBody ProductRequestJson requestJson) {
+	public ResponseEntity<ProductResponseJson> update(String recordId, @RequestBody ProductRequestJson requestJson) {
 		
 		validator.validateProductUpdate(requestJson);
-		LOGGER.info("Incoming Request" + id);
+		LOGGER.info("Incoming Request" + recordId);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
-		ProductBO respBo = productBoService.update(bo, id);
+		ProductBO respBo = productBoService.update(bo, recordId);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
 		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
-	public ResponseEntity<Void> deleteById(int id) {
+	public ResponseEntity<Void> deleteById(String recordId) {
 
-		LOGGER.info("Incoming Request" + id);
-		int numberofRecords = productBoService.deleteById(id);
+		LOGGER.info("Incoming Request" + recordId);
+		int numberofRecords = productBoService.deleteById(recordId);
 		LOGGER.info("Outgoing Response" + numberofRecords);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

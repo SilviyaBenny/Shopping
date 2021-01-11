@@ -1,5 +1,7 @@
 package com.shopping.BOtoResponse.mapper;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import com.shopping.bo.ProductBO;
@@ -10,7 +12,7 @@ public class ProductBOtoResponseJsonMapper {
 	
 	public ProductResponseJson mapObject(ProductBO productBO) {
 		ProductResponseJson json = new ProductResponseJson();
-		json.setId(productBO.getId());
+		json.setRecordId(productBO.getRecordId());
 		json.setName(productBO.getName());
 		json.setPrice(productBO.getPrice());
 		json.setQuantity(productBO.getQuantity());
@@ -19,4 +21,5 @@ public class ProductBOtoResponseJsonMapper {
 		json.setDescription(productBO.getDescription());
 		return json;
 	}
+	
 }

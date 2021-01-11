@@ -54,7 +54,7 @@ public class ProductControllerMockTest {
 	@Test
 	public void createTest() {
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setId(2);
+		//productResponseJson.setRecordId(2);
 		productResponseJson.setName("Pen");
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(50);
@@ -63,7 +63,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setDescription("Stationery Items");
 
 		ProductBO productBO = new ProductBO();
-		productBO.setDepartmentId(1);
+		//productBO.setDepartmentId(1);
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		when(productBoService.create(Mockito.<ProductBO>any())).thenReturn(productBO);
 		when(jsontoBO.mapObject(Mockito.<ProductRequestJson>any())).thenReturn(productBO);
@@ -78,7 +78,6 @@ public class ProductControllerMockTest {
 	public void getByIdTest() {
 
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setId(2);
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(10);
 		productResponseJson.setPrice(20);
@@ -87,10 +86,10 @@ public class ProductControllerMockTest {
 		productResponseJson.setDescription("Stationery Items");
 
 		ProductBO productBO = new ProductBO();
-		when(productBoService.getById(Mockito.anyInt())).thenReturn(productBO);
+		when(productBoService.getById(Mockito.<String>any())).thenReturn(productBO);
 		when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
 
-		ResponseEntity<ProductResponseJson> resp = productController.getById(1);
+		ResponseEntity<ProductResponseJson> resp = productController.getById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		assertNotNull(resp);
 	}
 
@@ -98,7 +97,6 @@ public class ProductControllerMockTest {
 	public void getAllTest() {
 
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setId(1);
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(200);
 		productResponseJson.setPrice(100);
@@ -108,7 +106,6 @@ public class ProductControllerMockTest {
 
 		List<ProductBO> productBOList = new ArrayList<>();
 		ProductBO productBO = new ProductBO();
-		productBO.setId(1);
 		productBO.setName("Book");
 		productBO.setQuantity(200);
 		productBO.setPrice(100);
@@ -126,9 +123,7 @@ public class ProductControllerMockTest {
 
 	@Test
 	public void updateTest() {
-		int id = 0;
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setId(3);
 		productResponseJson.setName("Pen");
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(5000);
@@ -138,20 +133,20 @@ public class ProductControllerMockTest {
 
 		ProductBO productBO = new ProductBO();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
-		when(productBoService.update(Mockito.<ProductBO>any(), Mockito.anyInt())).thenReturn(productBO);
+		when(productBoService.update(Mockito.<ProductBO>any(), Mockito.<String>any())).thenReturn(productBO);
 		when(jsontoBO.mapObject(Mockito.<ProductRequestJson>any())).thenReturn(productBO);
 		when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
 
-		ResponseEntity<ProductResponseJson> resp = productController.update(id, productRequestJson);
+		ResponseEntity<ProductResponseJson> resp = productController.update("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2", productRequestJson);
 		assertNotNull(resp);
 	}
 
 	@Test
 	public void deleteByIdTest() {
 
-		when(productBoService.deleteById(Mockito.anyInt())).thenReturn(1);
+		when(productBoService.deleteById(Mockito.<String>any())).thenReturn(1);
 
-		ResponseEntity<Void> resp = productController.deleteById(1);
+		ResponseEntity<Void> resp = productController.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		assertNotNull(resp);
 	}
 

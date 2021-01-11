@@ -10,7 +10,7 @@ public class DepartmentBOtoDTOMapper {
 
 	public DepartmentDTO mapObject(DepartmentBO bo) {
 		DepartmentDTO dto = new DepartmentDTO();
-		dto.setId(bo.getId());
+		dto.setRecordId(bo.getRecordId());
 		dto.setDepartmentName(bo.getDepartmentName());
 		dto.setDescription(bo.getDescription());
 

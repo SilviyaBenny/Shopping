@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class DepartmentControllerRestTest extends TestBase{
 	private DepartmentController departmentController;
 	
 	@Test
+	@Order(1)
 	public void createTest() {
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Home");
@@ -28,30 +30,34 @@ public class DepartmentControllerRestTest extends TestBase{
 	}
 	
 	@Test
+	@Order(2)
 	public void getAlltest() {
 		ResponseEntity<List<DepartmentResponseJson>> resp = departmentController.getAll();
 		assertNotNull(resp);
 	}
 	
 	@Test
+	@Order(3)
 	public void getById() {
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById(1);
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById("yreutiewti76534tgje");
 		assertNotNull(resp);
 	}
 	
 	@Test
+	@Order(4)
 	public void updateTest() {
-		int id = 2;
+		
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Garden");
 		departmentRequestJson.setDescription("Gardening Area");
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.update(id, departmentRequestJson);
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.update("yreutiewti76534tgje", departmentRequestJson);
 		assertNotNull(resp);
 	}
 	
 	@Test
+	@Order(5)
 	public void deleteByIdTest() {
-		ResponseEntity<Void> resp = departmentController.deleteById(3);
+		ResponseEntity<Void> resp = departmentController.deleteById("yreutiewti76534tgje");
 		assertNotNull(resp);
 	}
 }

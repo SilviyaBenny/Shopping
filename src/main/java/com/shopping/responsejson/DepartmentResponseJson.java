@@ -2,22 +2,22 @@ package com.shopping.responsejson;
 
 public class DepartmentResponseJson {
 
-	private int id;
+	private String recordId;
 	private String departmentName;
 	private String description;
 
 	@Override
 	public String toString() {
-		return "DepartmentResponseJson [id=" + id + ", departmentName=" + departmentName + ", description="
+		return "DepartmentResponseJson [recordId=" + recordId + ", departmentName=" + departmentName + ", description="
 				+ description + "]";
 	}
 
-	public int getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public String getDepartmentName() {
