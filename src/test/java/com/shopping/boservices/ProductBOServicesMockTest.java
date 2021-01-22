@@ -49,7 +49,6 @@ public class ProductBOServicesMockTest {
 
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
-		productBO.setId(1);
 		productBO.setName("Pen");
 		productBO.setQuantity(100);
 		productBO.setPrice(500);
@@ -67,15 +66,14 @@ public class ProductBOServicesMockTest {
 	public void getByIdTest() {
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
-		productBO.setId(1);
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
 		productBO.setDepartmentId(30);
-		when(productDAO.getById(Mockito.anyInt())).thenReturn(productDTO);
+		when(productDAO.getById(Mockito.<String>any())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
-		ProductBO bo = productBoServices.getById(1);
+		ProductBO bo = productBoServices.getById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		assertNotNull(bo);
 
 	}
@@ -84,7 +82,6 @@ public class ProductBOServicesMockTest {
 	public void getAllTest() {
 		List<ProductDTO> productDTOlist = new ArrayList<>();
 		ProductDTO productDTO = new ProductDTO();
-		productDTO.setId(1);
 		productDTO.setName("Pen");
 		productDTO.setQuantity(100);
 		productDTO.setPrice(200);
@@ -94,7 +91,6 @@ public class ProductBOServicesMockTest {
 		productDTOlist.add(productDTO);
 
 		ProductBO productBO = new ProductBO();
-		productBO.setId(1);
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
@@ -112,24 +108,23 @@ public class ProductBOServicesMockTest {
 
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
-		productBO.setId(1);
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
 		productBO.setDepartmentId(30);
-		when(productDAO.update(Mockito.<ProductDTO>any(), Mockito.anyInt())).thenReturn(productDTO);
+		when(productDAO.update(Mockito.<ProductDTO>any(), Mockito.<String>any())).thenReturn(productDTO);
 		when(boTodtoMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
 
-		ProductBO bo = productBoServices.update(productBO, 1);
-		assertNotNull(bo);
+		ProductBO bo = productBoServices.update(productBO, "ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		assertNotNull(bo);   
 	}
 
 	@Test
 	public void deleteById() {
-		when(productDAO.deleteById(Mockito.anyInt())).thenReturn(1);
-		int bo = productBoServices.deleteById(1);
+		when(productDAO.deleteById(Mockito.<String>any())).thenReturn(1);
+		int bo= productBoServices.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		assertNotNull(bo);
 	}
 }

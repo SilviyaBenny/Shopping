@@ -57,10 +57,10 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 		return boList;
 	}
 
-	public DepartmentBO getById(int id) {
-		LOGGER.info("Incoming Request:" + id);
+	public DepartmentBO getById(String recordId) {
+		LOGGER.info("Incoming Request:" + recordId);
 		try {
-			DepartmentDTO respDTO = departmentDAO.getById(id);
+			DepartmentDTO respDTO = departmentDAO.getById(recordId);
 			DepartmentBO respBO = dtoToboMapper.mapObject(respDTO);
 			LOGGER.info("Outgoing response:" + respBO);
 			return respBO;
@@ -69,15 +69,15 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
-					"Item with id " + id + "not found");
+					"Item with id " + recordId + "not found");
 		}
 	}
 
-	public DepartmentBO update(DepartmentBO departmentBO, int id) {
-		LOGGER.info("Incoming Request:" + id);
+	public DepartmentBO update(DepartmentBO departmentBO, String recordId) {
+		LOGGER.info("Incoming Request:" + recordId);
 		try {
 		DepartmentDTO dto = boTodtoMapper.mapObject(departmentBO);
-		DepartmentDTO respDTO = departmentDAO.update(dto, id);
+		DepartmentDTO respDTO = departmentDAO.update(dto, recordId);
 		DepartmentBO respBO = dtoToboMapper.mapObject(respDTO);
 		LOGGER.info("Outgoing response:" + respBO);
 		return respBO;
@@ -86,13 +86,13 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
-					"Item with id " + id + "not found");
+					"Item with id " + recordId + "not found");
 		}
 	}
 
-	public int deleteById(int id) {
-		LOGGER.info("Incoming Request:" + id);
-		int numberofRecords = departmentDAO.deleteById(id);
+	public int deleteById(String recordId) {
+		LOGGER.info("Incoming Request:" + recordId);
+		int numberofRecords = departmentDAO.deleteById(recordId);
 		LOGGER.info("Outgoing response:" + numberofRecords);
 		return numberofRecords;
 	}

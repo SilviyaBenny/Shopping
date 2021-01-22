@@ -48,7 +48,6 @@ public class DepartmentControllerMockTest {
 	@Test
 	public void createTest() {
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		
@@ -64,13 +63,11 @@ public class DepartmentControllerMockTest {
 	@Test
 	public void getAllTest() {
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setId(1);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		
 		List<DepartmentBO> departmentBOList = new ArrayList<>();
 		DepartmentBO departmentBO = new DepartmentBO();
-		departmentBO.setId(1);
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
 		
@@ -84,38 +81,35 @@ public class DepartmentControllerMockTest {
 	@Test
 	public void getByIdTest() {
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		
 		DepartmentBO departmentBO = new DepartmentBO();
-		when(departmentBOServices.getById(Mockito.anyInt())).thenReturn(departmentBO);
+		when(departmentBOServices.getById(Mockito.<String>any())).thenReturn(departmentBO);
 		when(botoResponseMapper.mapObject(Mockito.<DepartmentBO>any())).thenReturn(departmentResponseJson);
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById(1);
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		assertNotNull(resp);
 	}
 	@Test
 	public void updateTest() {
-		int id=0;
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		
 		DepartmentBO departmentBO = new DepartmentBO();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
-		when(departmentBOServices.update(Mockito.<DepartmentBO>any(),Mockito.anyInt())).thenReturn(departmentBO);
+		when(departmentBOServices.update(Mockito.<DepartmentBO>any(),Mockito.<String>any())).thenReturn(departmentBO);
 		when(requestJsonToBOMapper.mapObject(Mockito.<DepartmentRequestJson>any())).thenReturn(departmentBO);
 		when(botoResponseMapper.mapObject(Mockito.<DepartmentBO>any())).thenReturn(departmentResponseJson);
 		
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.update(id,departmentRequestJson);
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.update("f470b26f-d1a0-461a-b84a-ad8504a2a685",departmentRequestJson);
 		assertNotNull(resp);
 	}
 	@Test
 	public void deleteByIdTest() {
 		
-		when(departmentBOServices.deleteById(Mockito.anyInt())).thenReturn(1);
-		ResponseEntity<Void> resp = departmentController.deleteById(1);
+		when(departmentBOServices.deleteById(Mockito.<String>any())).thenReturn(1);
+		ResponseEntity<Void> resp = departmentController.deleteById("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		assertNotNull(resp);
 	}
 }

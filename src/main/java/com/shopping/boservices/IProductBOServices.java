@@ -8,7 +8,7 @@ public interface IProductBOServices {
 
 	public ProductBO create(ProductBO bo);
 	public List<ProductBO> getAll();
-	public ProductBO getById(int id);
-	public ProductBO update(ProductBO bo, int id);
-	public int deleteById(int id);
+	public ProductBO getById(String recordId);
+	public ProductBO update(ProductBO bo, String recordId);
+	public int deleteById(String recordId);
 }

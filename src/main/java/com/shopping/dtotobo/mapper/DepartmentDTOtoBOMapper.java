@@ -9,7 +9,7 @@ import com.shopping.repository.dto.DepartmentDTO;
 public class DepartmentDTOtoBOMapper {
 	public DepartmentBO mapObject(DepartmentDTO dto) {
 		DepartmentBO bo = new DepartmentBO();
-		bo.setId(dto.getId());
+		bo.setRecordId(dto.getRecordId());
 		bo.setDepartmentName(dto.getDepartmentName());
 		bo.setDescription(dto.getDescription());
 

@@ -60,10 +60,10 @@ public class ProductBOServices implements IProductBOServices {
 		return boList;
 	}
 
-	public ProductBO getById(int id) {
-		LOGGER.info("Incoming request:" + id);
+	public ProductBO getById(String recordId) {
+		LOGGER.info("Incoming request:" + recordId);
 		try {
-			ProductDTO productDTO = productDAO.getById(id);
+			ProductDTO productDTO = productDAO.getById(recordId);
 			ProductBO respBO = dtoToboMapper.mapObject(productDTO);
 			LOGGER.info("Outgoing response:" + respBO);
 			return respBO;
@@ -72,15 +72,15 @@ public class ProductBOServices implements IProductBOServices {
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
-					"Item with id " + id + " not found");
+					"Item with id " + recordId + " not found");
 		}
 	}
 
-	public ProductBO update(ProductBO bo, int id) {
-		LOGGER.info("Incoming request:" + id);
+	public ProductBO update(ProductBO bo, String recordId) {
+		LOGGER.info("Incoming request:" + recordId);
 		try {
 		ProductDTO dto = boTodtoMapper.mapObject(bo);
-		ProductDTO respDTO = productDAO.update(dto, id);
+		ProductDTO respDTO = productDAO.update(dto, recordId);
 		ProductBO respBO = dtoToboMapper.mapObject(respDTO);
 		LOGGER.info("Outugoing response:" + respBO);
 		return respBO;
@@ -89,13 +89,13 @@ public class ProductBOServices implements IProductBOServices {
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
-					"Item with id " + id + " not found");
+					"Item with id " + recordId + " not found");
 		}
 	}
 
-	public int deleteById(int id) {
-		LOGGER.info("Incoming request:" + id);
-		int numberofRecords = productDAO.deleteById(id);
+	public int deleteById(String recordId) {
+		LOGGER.info("Incoming request:" + recordId);
+		int numberofRecords = productDAO.deleteById(recordId);
 		LOGGER.info("Outgoing response:" + numberofRecords);
 		return numberofRecords;
 		

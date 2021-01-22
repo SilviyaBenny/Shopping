@@ -10,7 +10,7 @@ public class ProductDTOtoBOMapper {
 
 	public ProductBO mapObject(ProductDTO dto) {
 		ProductBO productBO = new ProductBO();
-		productBO.setId(dto.getId());
+		productBO.setRecordId(dto.getRecordId());
 		productBO.setName(dto.getName());
 		productBO.setPrice(dto.getPrice());
 		productBO.setQuantity(dto.getQuantity());

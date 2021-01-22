@@ -2,20 +2,20 @@ package com.shopping.bo;
 
 public class DepartmentBO {
 
-	private int id;
+	private String recordId;
 	private String departmentName;
 	private String description;
 
 	@Override
 	public String toString() {
-		return "DepartmentBO [id=" + id + ", departmentName=" + departmentName + ", description=" + description + "]";
+		return "DepartmentBO [recordId=" + recordId + ", departmentName=" + departmentName + ", description=" + description + "]";
 	}
-	public int getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public String getDepartmentName() {

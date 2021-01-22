@@ -12,7 +12,7 @@ public class DepartmentRowMapper implements RowMapper<DepartmentDTO> {
 	@Override
 	public DepartmentDTO mapRow(ResultSet rs , int rowNum)throws SQLException{
 		DepartmentDTO departmentDTO = new DepartmentDTO();
-		departmentDTO.setId(rs.getInt("ID"));
+		departmentDTO.setRecordId(rs.getString("RECORD_ID"));
 		departmentDTO.setDepartmentName(rs.getString("DEPARTMENT_NAME"));
 		departmentDTO.setDescription(rs.getString("DESCRIPTION"));
 		

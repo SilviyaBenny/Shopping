@@ -2,20 +2,20 @@ package com.shopping.repository.dto;
 
 public class DepartmentDTO {
 
-	private int id;
+	private String recordId;
 	private String departmentName;
 	private String description;
 
 	@Override
 	public String toString() {
-		return "DepartmentDTO [id=" + id + ", departmentName=" + departmentName + ", description=" + description + "]";
+		return "DepartmentDTO [recordId=" + recordId + ", departmentName=" + departmentName + ", description=" + description + "]";
 	}
-	public int getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public String getDepartmentName() {
@@ -33,5 +33,6 @@ public class DepartmentDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 
 }

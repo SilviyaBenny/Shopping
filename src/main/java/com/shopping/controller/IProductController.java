@@ -21,12 +21,12 @@ public interface IProductController {
 	public ResponseEntity<ProductResponseJson> create(@RequestBody ProductRequestJson requestJson);
 	@GetMapping()
 	public ResponseEntity<List<ProductResponseJson>> getAll();
-	@GetMapping("{id}")
-	public ResponseEntity<ProductResponseJson> getById(@PathVariable("id") int id);
-	@PutMapping("{id}")
-	public ResponseEntity<ProductResponseJson> update(@PathVariable("id") int id,
+	@GetMapping("{recordId}")
+	public ResponseEntity<ProductResponseJson> getById(@PathVariable("recordId") String recordId);
+	@PutMapping("{recordId}")
+	public ResponseEntity<ProductResponseJson> update(@PathVariable("recordId") String recordId,
 			@RequestBody ProductRequestJson requestJson);
-	@DeleteMapping("{id}")
-	public ResponseEntity<Void> deleteById(@PathVariable("id") int id);
+	@DeleteMapping("{recordId}")
+	public ResponseEntity<Void> deleteById(@PathVariable("recordId") String recordId);
 	
 }

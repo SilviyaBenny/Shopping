@@ -1,8 +1,10 @@
 package com.shopping.responsejson;
 
+import java.util.UUID;
+
 public class ProductResponseJson {
 
-	private int id;
+	private String recordId;
 	private String name;
 	private int quantity;
 	private float price;
@@ -12,16 +14,16 @@ public class ProductResponseJson {
 	
 	@Override
 	public String toString() {
-		return "ProductResponseJson [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
+		return "ProductResponseJson [recordId=" + recordId + ", name=" + name + ", quantity=" + quantity + ", price=" + price
 				+ ", sku=" + sku + " ,departmentId=" + departmentId + ",description=" + description + "]";
 	}
 
-	public int getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public String getName() {

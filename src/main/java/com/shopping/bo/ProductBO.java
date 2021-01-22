@@ -1,8 +1,10 @@
 package com.shopping.bo;
 
+import java.util.UUID;
+
 public class ProductBO {
 
-	private int id;
+	private String recordId;
 	private String name;
 	private int quantity;
 	private float price;
@@ -12,16 +14,16 @@ public class ProductBO {
 
 	@Override
 	public String toString() {
-		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku=" + sku
+		return "ProductBO [recordId=" + recordId + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku=" + sku
 				+ ", departmentId=" + departmentId + ", description=" + description + "]";
 	}
 
-	public int getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public String getName() {
