@@ -1,6 +1,5 @@
 package com.shopping.rowmapper;
 
-import java.util.UUID;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,6 +19,10 @@ public class ProductRowMapper implements RowMapper<ProductDTO> {
 		productDTO.setSku(rs.getString("SKU"));
 		productDTO.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
 		productDTO.setDescription(rs.getString("DESCRIPTION"));
+		productDTO.setCreatedBy(rs.getString("CREATED_BY"));
+		productDTO.setCreatedDate(rs.getDate("CREATED_DATE"));
+		productDTO.setModifiedBy(rs.getString("MODIFIED_BY"));
+		productDTO.setModifiedDate(rs.getDate("MODIFIED_DATE"));
 		return productDTO;
 	}
 }

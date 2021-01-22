@@ -1,6 +1,6 @@
 package com.shopping.bo;
 
-import java.util.UUID;
+import java.util.Date;
 
 public class ProductBO {
 
@@ -11,17 +11,24 @@ public class ProductBO {
 	private String sku;
 	private int departmentId;
 	private String description;
-
+	private String createdBy;
+	private Date createdDate;
+	private String modifiedBy;
+	private Date modifiedDate;
+	
 	@Override
 	public String toString() {
-		return "ProductBO [recordId=" + recordId + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku=" + sku
-				+ ", departmentId=" + departmentId + ", description=" + description + "]";
+		return "ProductBO [recordId=" + recordId + ", name=" + name + ", quantity=" + quantity + ", price=" + price
+				+ ", sku=" + sku + ", departmentId=" + departmentId + ", description=" + description + ", createdBy="
+				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
+				+ modifiedDate + "]";
 	}
 
 	public String getRecordId() {
 		return recordId;
 	}
 
+	
 	public void setRecordId(String recordId) {
 		this.recordId = recordId;
 	}
@@ -71,6 +78,37 @@ public class ProductBO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
 

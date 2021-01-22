@@ -11,9 +11,22 @@ create table product(
    
 );
 
+alter table product add CREATED_BY  VARCHAR(30);
+alter table product add CREATED_DATE DATE;
+alter table product add MODIFIED_BY  VARCHAR(30);
+alter table product add MODIFIED_DATE DATE;
+commit;
+
 create table department(
 	RECORD_ID VARCHAR(36) NOT NULL PRIMARY KEY ,
 	DEPARTMENT_NAME VARCHAR(30),
 	DESCRIPTION VARCHAR(250)
 	);
+	
+alter table department add CREATED_BY  VARCHAR(30);
+alter table department add CREATED_DATE DATE;
+alter table department add MODIFIED_BY  VARCHAR(30);
+alter table department add MODIFIED_DATE DATE;
+
+commit;
 	

@@ -2,6 +2,7 @@ package com.shopping.contoller;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Order;
@@ -21,9 +22,14 @@ public class DepartmentControllerRestTest extends TestBase{
 	@Test
 	@Order(1)
 	public void createTest() {
+		Date date = new Date();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Home");
 		departmentRequestJson.setDescription("Home Appliances");
+		departmentRequestJson.setCreatedBy("Jill");
+		departmentRequestJson.setCreatedDate(date);
+		departmentRequestJson.setModifiedBy("testUser");
+		departmentRequestJson.setModifiedDate(date);
 		
 		ResponseEntity<DepartmentResponseJson> resp = departmentController.create(departmentRequestJson);
 		assertNotNull(resp);
@@ -46,10 +52,15 @@ public class DepartmentControllerRestTest extends TestBase{
 	@Test
 	@Order(4)
 	public void updateTest() {
-		
+		Date date = new Date();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Garden");
 		departmentRequestJson.setDescription("Gardening Area");
+		//departmentRequestJson.setCreatedBy("Jill");
+		//departmentRequestJson.setCreatedDate(date);
+		departmentRequestJson.setModifiedBy("testUser");
+		departmentRequestJson.setModifiedDate(date);
+
 		ResponseEntity<DepartmentResponseJson> resp = departmentController.update("yreutiewti76534tgje", departmentRequestJson);
 		assertNotNull(resp);
 	}

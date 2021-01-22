@@ -1,6 +1,7 @@
 package com.shopping.boservices;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -19,7 +20,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
 import com.shopping.botodto.mapper.ProductBOtoDTOMapper;
+import com.shopping.config.EntityRequstContext;
 import com.shopping.dtotobo.mapper.ProductDTOtoBOMapper;
+import com.shopping.exception.DatabaseException;
+import com.shopping.exception.ItemNotFoundException;
+import com.shopping.exception.ShoppingException;
 import com.shopping.repository.ProductDAO;
 import com.shopping.repository.dto.ProductDTO;
 
@@ -127,4 +132,5 @@ public class ProductBOServicesMockTest {
 		int bo= productBoServices.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		assertNotNull(bo);
 	}
+
 }

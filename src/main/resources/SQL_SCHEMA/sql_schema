@@ -10,6 +10,11 @@ create table product(
    
 );
 
+alter table product add CREATED_BY  VARCHAR(30);
+alter table product add CREATED_DATE DATE;
+alter table product add MODIFIED_BY  VARCHAR(30);
+alter table product add MODIFIED_DATE DATE;
+commit;
 
 INSERT INTO PRODUCT (NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID) VALUES ('Book',90,100,'00B',20);
 INSERT INTO PRODUCT (NAME, QUANTITY,PRICE,SKU,DEPARTMENT_ID) VALUES ('Book',90,100,'00B',20);
@@ -23,8 +28,12 @@ create table department(
 	DESCRIPTION VARCHAR(250)
 	);
 	
+alter table department add CREATED_BY  VARCHAR(30);
+alter table department add CREATED_DATE DATE;
+alter table department add MODIFIED_BY  VARCHAR(30);
+alter table department add MODIFIED_DATE DATE;
+
+commit;
 INSERT INTO DEPARTMENT(RECORD_ID,DEPARTMENT_NAME,DESCRIPTION) VALUES ('hfzjdgfdkuyfguw7r6868r8','HOME','HOME APPLIANCES');
 
 
-
-UPDATE DEPARTMENT SET DEPARTMENT_NAME="Kids" WHERE ID=4;

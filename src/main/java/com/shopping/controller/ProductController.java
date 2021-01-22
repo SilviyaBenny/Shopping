@@ -40,7 +40,7 @@ public class ProductController implements IProductController {
 		ProductBO respBo = productBoService.create(bo);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
-		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
+		return new ResponseEntity<ProductResponseJson>(responseJson,HttpStatus.OK);
 	}
 
 	public ResponseEntity<List<ProductResponseJson>> getAll() {
@@ -71,7 +71,7 @@ public class ProductController implements IProductController {
 		ProductBO respBo = productBoService.update(bo, recordId);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
-		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
+		return new ResponseEntity<ProductResponseJson>(responseJson,HttpStatus.OK);
 	}
 
 	public ResponseEntity<Void> deleteById(String recordId) {

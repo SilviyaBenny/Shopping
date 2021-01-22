@@ -13,6 +13,10 @@ public class DepartmentRequestJsonToBOMapper {
 		bo.setRecordId(requestJson.getRecordId());
 		bo.setDepartmentName(requestJson.getDepartmentName());
 		bo.setDescription(requestJson.getDescription());
+		bo.setCreatedBy(requestJson.getCreatedBy());
+		bo.setCreatedDate(requestJson.getCreatedDate());
+		bo.setModifiedBy(requestJson.getModifiedBy());
+		bo.setModifiedDate(requestJson.getModifiedDate());
 
 		return bo;
 	}

@@ -3,6 +3,8 @@ package com.shopping.contoller;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +22,15 @@ public class DepartmentCURDTest extends TestBase {
 
 	@Test
 	public void test() {
+		Date date = new Date();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Home");
 		departmentRequestJson.setDescription("Home Appliances");
+		departmentRequestJson.setCreatedBy("Jill");
+		departmentRequestJson.setCreatedDate(date);
+		departmentRequestJson.setModifiedBy("testUser");
+		departmentRequestJson.setModifiedDate(date);
+
 
 		ResponseEntity<DepartmentResponseJson> resp = departmentController.create(departmentRequestJson);
 		assertRequest(departmentRequestJson, resp.getBody());
@@ -34,6 +42,8 @@ public class DepartmentCURDTest extends TestBase {
 
 		departmentRequestJson.setDepartmentName("Garden");
 		departmentRequestJson.setDescription("Home Appliances");
+		departmentRequestJson.setModifiedBy("Jill");
+		departmentRequestJson.setModifiedDate(date);
 
 		resp = departmentController.update(createdId, departmentRequestJson);
 		assertRequest(departmentRequestJson, resp.getBody());
@@ -49,11 +59,14 @@ public class DepartmentCURDTest extends TestBase {
 
 	}
 
-	private void assertRequest(DepartmentRequestJson departmentRequestJson, DepartmentResponseJson resp) {
-		assertNotNull(departmentRequestJson);
-		assertNotNull(resp);
-		assertEquals(departmentRequestJson.getDepartmentName(), resp.getDepartmentName());
-		assertEquals(departmentRequestJson.getDescription(), resp.getDescription());
+	private void assertRequest(DepartmentRequestJson requestJson, DepartmentResponseJson responseJson) {
+		assertNotNull(requestJson);
+		assertNotNull(responseJson);
+		assertEquals(requestJson.getDepartmentName(), responseJson.getDepartmentName());
+		assertEquals(requestJson.getDescription(), responseJson.getDescription());
+		assertEquals(requestJson.getCreatedBy(), responseJson.getCreatedBy());
+		assertEquals(requestJson.getModifiedBy(), responseJson.getModifiedBy());
+
 
 	}
 }

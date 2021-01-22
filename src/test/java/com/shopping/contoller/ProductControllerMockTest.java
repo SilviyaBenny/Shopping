@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -53,17 +54,20 @@ public class ProductControllerMockTest {
 
 	@Test
 	public void createTest() {
+		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		//productResponseJson.setRecordId(2);
 		productResponseJson.setName("Pen");
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(50);
 		productResponseJson.setSku("00B");
 		productResponseJson.setDepartmentId(20);
 		productResponseJson.setDescription("Stationery Items");
+		productResponseJson.setCreatedBy("Jill");
+		productResponseJson.setCreatedDate(date);
+		productResponseJson.setModifiedBy("Jill");
+		productResponseJson.setModifiedDate(date);
 
 		ProductBO productBO = new ProductBO();
-		//productBO.setDepartmentId(1);
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		when(productBoService.create(Mockito.<ProductBO>any())).thenReturn(productBO);
 		when(jsontoBO.mapObject(Mockito.<ProductRequestJson>any())).thenReturn(productBO);
@@ -77,6 +81,7 @@ public class ProductControllerMockTest {
 	@Test
 	public void getByIdTest() {
 
+		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(10);
@@ -84,6 +89,10 @@ public class ProductControllerMockTest {
 		productResponseJson.setSku("00A");
 		productResponseJson.setDepartmentId(10);
 		productResponseJson.setDescription("Stationery Items");
+		productResponseJson.setCreatedBy("Jill");
+		productResponseJson.setCreatedDate(date);
+		productResponseJson.setModifiedBy("Jill");
+		productResponseJson.setModifiedDate(date);
 
 		ProductBO productBO = new ProductBO();
 		when(productBoService.getById(Mockito.<String>any())).thenReturn(productBO);
@@ -96,6 +105,7 @@ public class ProductControllerMockTest {
 	@Test
 	public void getAllTest() {
 
+		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(200);
@@ -103,6 +113,10 @@ public class ProductControllerMockTest {
 		productResponseJson.setSku("00A");
 		productResponseJson.setDepartmentId(20);
 		productResponseJson.setDescription("Stationery Items");
+		productResponseJson.setCreatedBy("Jill");
+		productResponseJson.setCreatedDate(date);
+		productResponseJson.setModifiedBy("Jill");
+		productResponseJson.setModifiedDate(date);
 
 		List<ProductBO> productBOList = new ArrayList<>();
 		ProductBO productBO = new ProductBO();
@@ -112,6 +126,10 @@ public class ProductControllerMockTest {
 		productBO.setSku("00A");
 		productBO.setDepartmentId(10);
 		productBO.setDescription("Stationery Items");
+		productResponseJson.setCreatedBy("Jill");
+		productResponseJson.setCreatedDate(date);
+		productResponseJson.setModifiedBy("Jill");
+		productResponseJson.setModifiedDate(date);
 		productBOList.add(productBO);
 
 		when(productBoService.getAll()).thenReturn(productBOList);
@@ -123,6 +141,8 @@ public class ProductControllerMockTest {
 
 	@Test
 	public void updateTest() {
+		
+		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
 		productResponseJson.setName("Pen");
 		productResponseJson.setQuantity(100);
@@ -130,6 +150,8 @@ public class ProductControllerMockTest {
 		productResponseJson.setSku("00B");
 		productResponseJson.setDepartmentId(20);
 		productResponseJson.setDescription("Stationery Items");
+		productResponseJson.setModifiedBy("Jill");
+		productResponseJson.setModifiedDate(date);
 
 		ProductBO productBO = new ProductBO();
 		ProductRequestJson productRequestJson = new ProductRequestJson();

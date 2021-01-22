@@ -13,6 +13,10 @@ public class DepartmentBOtoResponseJsonMapper {
 		responseJson.setRecordId(bo.getRecordId());
 		responseJson.setDepartmentName(bo.getDepartmentName());
 		responseJson.setDescription(bo.getDescription());
+		responseJson.setCreatedBy(bo.getCreatedBy());
+		responseJson.setCreatedDate(bo.getCreatedDate());
+		responseJson.setModifiedBy(bo.getModifiedBy());
+		responseJson.setModifiedDate(bo.getModifiedDate());
 		
 		return responseJson;
 	}

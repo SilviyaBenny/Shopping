@@ -1,7 +1,5 @@
 package com.shopping.BOtoResponse.mapper;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Component;
 
 import com.shopping.bo.ProductBO;
@@ -19,6 +17,10 @@ public class ProductBOtoResponseJsonMapper {
 		json.setSku(productBO.getSku());
 		json.setDepartmentId(productBO.getDepartmentId());
 		json.setDescription(productBO.getDescription());
+		json.setCreatedBy(productBO.getCreatedBy());
+		json.setCreatedDate(productBO.getCreatedDate());
+		json.setModifiedBy(productBO.getModifiedBy());
+		json.setModifiedDate(productBO.getModifiedDate());
 		return json;
 	}
 	

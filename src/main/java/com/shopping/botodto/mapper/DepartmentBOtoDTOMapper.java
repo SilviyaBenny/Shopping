@@ -13,6 +13,10 @@ public class DepartmentBOtoDTOMapper {
 		dto.setRecordId(bo.getRecordId());
 		dto.setDepartmentName(bo.getDepartmentName());
 		dto.setDescription(bo.getDescription());
+		dto.setCreatedBy(bo.getCreatedBy());
+		dto.setCreatedDate(bo.getCreatedDate());
+		dto.setModifiedBy(bo.getModifiedBy());
+		dto.setModifiedDate(bo.getModifiedDate());
 
 		return dto;
 	}
