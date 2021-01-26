@@ -57,6 +57,7 @@ public class ProductCURDTest extends TestBase {
 
 		ResponseEntity<Void> deleteResp = productController.deleteById(createdId);
 		assertEquals(HttpStatus.NO_CONTENT, deleteResp.getStatusCode());
+		assertResponse(productRequestJson, resp.getBody());
 		
 		try {
 			resp = productController.getById(createdId);

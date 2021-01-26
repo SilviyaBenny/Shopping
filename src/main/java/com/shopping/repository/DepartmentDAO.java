@@ -10,9 +10,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.shopping.exception.DatabaseException;
 import com.shopping.exception.ErrorCode;
 import com.shopping.exception.ErrorType;
+import com.shopping.exception.ItemNotFoundException;
 import com.shopping.repository.dto.DepartmentDTO;
 import com.shopping.rowmapper.DepartmentRowMapper;
 
@@ -66,7 +66,7 @@ public class DepartmentDAO {
 		int recordsUpdated = namedParameterJdbcTemplate.update(UPDATE_QUERY, namedParameters);
 		departmentDTO.setRecordId(recordId);
 		if(recordsUpdated!=1) {
-			throw new DatabaseException(ErrorCode.SHOPPING_DATABASE_100, ErrorType.DATABASE,
+			throw new ItemNotFoundException(ErrorCode.SHOPPING_DATABASE_100, ErrorType.DATABASE,
 					"Item with id " + recordId + " not found");
 		}
 		return departmentDTO;
