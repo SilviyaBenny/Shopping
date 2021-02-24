@@ -2,6 +2,7 @@ package com.shopping.contoller;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Order;
@@ -22,13 +23,19 @@ public class ProductControllerRestTest extends TestBase {
 	@Order(1)
 	public void createTest() {
 
+		Date date = new Date();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		productRequestJson.setName("Book");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(10);
+		productRequestJson.setDepartmentId("dghsgkzj10");
 		productRequestJson.setDescription("Stationery Items");
+		productRequestJson.setCreatedBy("Jill");
+		productRequestJson.setCreatedDate(date);
+		productRequestJson.setModifiedBy("testUser");
+		productRequestJson.setModifiedDate(date);
+
 
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertNotNull(resp);
@@ -55,13 +62,19 @@ public class ProductControllerRestTest extends TestBase {
 	@Order(4)
 	public void updateTest() {
 		
+		Date date = new Date();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		productRequestJson.setName("Pen");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(10);
+		productRequestJson.setDepartmentId("dghsgkzj10");
 		productRequestJson.setDescription("Stationery Items");
+		productRequestJson.setCreatedBy("Jill");
+		productRequestJson.setCreatedDate(date);
+		productRequestJson.setModifiedBy("testUser");
+		productRequestJson.setModifiedDate(date);
+
 
 		ResponseEntity<ProductResponseJson> resp = productController.update("ytu5683746etfayufgya", productRequestJson);
 		assertNotNull(resp);

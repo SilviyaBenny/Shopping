@@ -66,7 +66,7 @@ public class DepartmentController implements IDepartmentController {
 	public ResponseEntity<DepartmentResponseJson> update(String recordId,
 			@RequestBody DepartmentRequestJson requestJson) {
 		validator.validateDepartmentUpdate(requestJson);
-		LOGGER.info("Incoming request " + requestJson);
+		LOGGER.info("Incoming request " + recordId);
 		DepartmentBO departmentBO = requestJsonToBOMapper.mapObject(requestJson);
 		DepartmentBO respBO = departmentBOServices.update(departmentBO, recordId);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);

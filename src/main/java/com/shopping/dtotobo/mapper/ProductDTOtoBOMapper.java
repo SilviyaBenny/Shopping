@@ -17,6 +17,10 @@ public class ProductDTOtoBOMapper {
 		productBO.setSku(dto.getSku());
 		productBO.setDepartmentId(dto.getDepartmentId());
 		productBO.setDescription(dto.getDescription());
+		productBO.setCreatedBy(dto.getCreatedBy());
+		productBO.setCreatedDate(dto.getCreatedDate());
+		productBO.setModifiedBy(dto.getModifiedBy());
+		productBO.setModifiedDate(dto.getModifiedDate());
 		return productBO;
 	}
 }

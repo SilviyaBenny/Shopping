@@ -4,11 +4,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,7 +24,7 @@ import com.shopping.controller.validator.DepartmentRequestValidator;
 import com.shopping.requestjson.DepartmentRequestJson;
 import com.shopping.requesttobomapper.DepartmentRequestJsonToBOMapper;
 import com.shopping.responsejson.DepartmentResponseJson;
-@Ignore
+
 @RunWith(MockitoJUnitRunner.class)
 public class DepartmentControllerMockTest {
 
@@ -47,9 +46,15 @@ public class DepartmentControllerMockTest {
 	
 	@Test
 	public void createTest() {
+		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
+		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
+		departmentResponseJson.setCreatedBy("Jill");
+		departmentResponseJson.setCreatedDate(date);
+		departmentResponseJson.setModifiedBy("Jill");
+		departmentResponseJson.setModifiedDate(date);
 		
 		DepartmentBO departmentBO = new DepartmentBO();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
@@ -62,14 +67,26 @@ public class DepartmentControllerMockTest {
 	}
 	@Test
 	public void getAllTest() {
+		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
+		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
+		departmentResponseJson.setCreatedBy("Jill");
+		departmentResponseJson.setCreatedDate(date);
+		departmentResponseJson.setModifiedBy("Jill");
+		departmentResponseJson.setModifiedDate(date);
+		
 		
 		List<DepartmentBO> departmentBOList = new ArrayList<>();
 		DepartmentBO departmentBO = new DepartmentBO();
+		departmentBO.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
+		departmentBO.setCreatedBy("Jill");
+		departmentBO.setCreatedDate(date);
+		departmentBO.setModifiedBy("Jill");
+		departmentBO.setModifiedDate(date);
 		
 		departmentBOList.add(departmentBO);
 		
@@ -80,9 +97,16 @@ public class DepartmentControllerMockTest {
 	}
 	@Test
 	public void getByIdTest() {
+		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
+		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
+		departmentResponseJson.setCreatedBy("Jill");
+		departmentResponseJson.setCreatedDate(date);
+		departmentResponseJson.setModifiedBy("Jill");
+		departmentResponseJson.setModifiedDate(date);
+		
 		
 		DepartmentBO departmentBO = new DepartmentBO();
 		when(departmentBOServices.getById(Mockito.<String>any())).thenReturn(departmentBO);
@@ -92,9 +116,15 @@ public class DepartmentControllerMockTest {
 	}
 	@Test
 	public void updateTest() {
+		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
+		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
+		departmentResponseJson.setCreatedBy("Jill");
+		departmentResponseJson.setCreatedDate(date);
+		departmentResponseJson.setModifiedBy("Jill");
+		departmentResponseJson.setModifiedDate(date);
 		
 		DepartmentBO departmentBO = new DepartmentBO();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();

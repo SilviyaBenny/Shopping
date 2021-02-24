@@ -3,6 +3,8 @@ package com.shopping.contoller;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +22,18 @@ public class ProductCURDTest extends TestBase {
 	@Test
 	public void test() {
 
+		Date date = new Date();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		productRequestJson.setName("Book");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(20);
+		productRequestJson.setDepartmentId("fhsjfjjv20");
 		productRequestJson.setDescription("Stationery Items");
+		productRequestJson.setCreatedBy("Jill");
+		productRequestJson.setCreatedDate(date);
+		productRequestJson.setModifiedBy("testUser");
+		productRequestJson.setModifiedDate(date);
 
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertResponse(productRequestJson, resp.getBody());
@@ -40,32 +47,37 @@ public class ProductCURDTest extends TestBase {
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(20);
+		productRequestJson.setDepartmentId("fhsjfjjv20");
 		productRequestJson.setDescription("Stationery Items");
+		productRequestJson.setModifiedBy("Jill");
+		productRequestJson.setModifiedDate(date);
 
 		resp = productController.update(createdId, productRequestJson);
 		assertResponse(productRequestJson, resp.getBody());
 
-		ResponseEntity<Void> deleteRsp = productController.deleteById(createdId);
-		assertEquals(HttpStatus.NO_CONTENT, deleteRsp.getStatusCode());
+		ResponseEntity<Void> deleteResp = productController.deleteById(createdId);
+		assertEquals(HttpStatus.NO_CONTENT, deleteResp.getStatusCode());
 		assertResponse(productRequestJson, resp.getBody());
-
+		
 		try {
 			resp = productController.getById(createdId);
 		} catch (ItemNotFoundException e) {
 
 		}
+
 	}
 
-	private void assertResponse(ProductRequestJson productRequestJson, ProductResponseJson resp) {
-		assertNotNull(productRequestJson);
-		assertNotNull(resp);
-		assertEquals(productRequestJson.getName(), resp.getName());
-		assertEquals(productRequestJson.getQuantity(), resp.getQuantity());
-		assertEquals(productRequestJson.getPrice(), resp.getPrice());
-		assertEquals(productRequestJson.getSku(), resp.getSku());
-		assertEquals(productRequestJson.getDepartmentId(), resp.getDepartmentId());
-		assertEquals(productRequestJson.getDescription(), resp.getDescription());
+	private void assertResponse(ProductRequestJson requestJson, ProductResponseJson responseJson) {
+		assertNotNull(requestJson);
+		assertNotNull(responseJson);
+		assertEquals(requestJson.getName(), responseJson.getName());
+		assertEquals(requestJson.getQuantity(), responseJson.getQuantity());
+		assertEquals(requestJson.getPrice(), responseJson.getPrice());
+		assertEquals(requestJson.getSku(), responseJson.getSku());
+		assertEquals(requestJson.getDepartmentId(), responseJson.getDepartmentId());
+		assertEquals(requestJson.getDescription(), responseJson.getDescription());
+		assertEquals(requestJson.getCreatedBy(), responseJson.getCreatedBy());
+		assertEquals(requestJson.getModifiedBy(), responseJson.getModifiedBy());
 
 	}
 

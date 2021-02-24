@@ -4,11 +4,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,12 +22,10 @@ import com.shopping.dtotobo.mapper.ProductDTOtoBOMapper;
 import com.shopping.repository.ProductDAO;
 import com.shopping.repository.dto.ProductDTO;
 
-@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class ProductBOServicesMockTest {
 	@InjectMocks
 	ProductBOServices productBoServices;
-
 	@Mock
 	ProductDAO productDAO;
 	@Mock
@@ -46,14 +43,21 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void createTest() {
-
+		
+		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
+		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		productBO.setName("Pen");
 		productBO.setQuantity(100);
 		productBO.setPrice(500);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDescription("Stationary");
+		productBO.setCreatedBy("Jill");
+		productBO.setCreatedDate(date);
+		productBO.setModifiedBy("Jill");
+		productBO.setModifiedDate(date);
 		when(productDAO.create(Mockito.<ProductDTO>any())).thenReturn(productDTO);
 		when(boTodtoMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
@@ -64,13 +68,21 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void getByIdTest() {
+		
+		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
+		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDescription("Stationary");
+		productBO.setCreatedBy("Jill");
+		productBO.setCreatedDate(date);
+		productBO.setModifiedBy("Jill");
+		productBO.setModifiedDate(date);
 		when(productDAO.getById(Mockito.<String>any())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
 		ProductBO bo = productBoServices.getById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
@@ -80,22 +92,36 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void getAllTest() {
+		
+		Date date = new Date();
 		List<ProductDTO> productDTOlist = new ArrayList<>();
 		ProductDTO productDTO = new ProductDTO();
+		productDTO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		productDTO.setName("Pen");
 		productDTO.setQuantity(100);
 		productDTO.setPrice(200);
 		productDTO.setSku("00C");
-		productDTO.setDepartmentId(40);
+		productDTO.setDepartmentId("gdshgckjzc30");
+		productDTO.setDescription("Stationary");
+		productDTO.setCreatedBy("Jill");
+		productDTO.setCreatedDate(date);
+		productDTO.setModifiedBy("Jill");
+		productDTO.setModifiedDate(date);
 
 		productDTOlist.add(productDTO);
 
 		ProductBO productBO = new ProductBO();
+		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDescription("Stationary");
+		productBO.setCreatedBy("Jill");
+		productBO.setCreatedDate(date);
+		productBO.setModifiedBy("Jill");
+		productBO.setModifiedDate(date);
 		when(productDAO.getAll()).thenReturn(productDTOlist);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
 		List<ProductBO> bo = productBoServices.getAll();
@@ -105,14 +131,21 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void updateTest() {
-
+		
+		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
+		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDescription("Stationary");
+		productBO.setCreatedBy("Jill");
+		productBO.setCreatedDate(date);
+		productBO.setModifiedBy("Jill");
+		productBO.setModifiedDate(date);
 		when(productDAO.update(Mockito.<ProductDTO>any(), Mockito.<String>any())).thenReturn(productDTO);
 		when(boTodtoMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
@@ -127,4 +160,5 @@ public class ProductBOServicesMockTest {
 		int bo= productBoServices.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
 		assertNotNull(bo);
 	}
+
 }

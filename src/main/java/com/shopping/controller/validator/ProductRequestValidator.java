@@ -44,6 +44,12 @@ public class ProductRequestValidator {
 		if (requestJson.getDescription().length() > 250) {
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Description Length should be less than 30"));
 		} 
+		if(requestJson.getCreatedBy().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "CreatedBy Length should be less than 30"));
+		}
+		if(requestJson.getModifiedBy().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "ModifiedBy Length should be less than 30"));
+		}
 		if (!entityRequstContext.getErrors().isEmpty()) {
 			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Validation of input field");
 		}
@@ -74,6 +80,12 @@ public class ProductRequestValidator {
 		if (requestJson.getDescription().length() > 250) {
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Description Length should be less than 30"));
 		} 
+		if(requestJson.getCreatedBy().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "CreatedBy Length should be less than 30"));
+		}
+		if(requestJson.getModifiedBy().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "ModifiedBy Length should be less than 30"));
+		}
 		if (!entityRequstContext.getErrors().isEmpty()) {
 			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Validation of input field");
 		}
