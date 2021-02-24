@@ -29,7 +29,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(10);
+		productRequestJson.setDepartmentId("dghsgkzj10");
 		productRequestJson.setDescription("Stationery Items");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);
@@ -68,7 +68,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(10);
+		productRequestJson.setDepartmentId("dghsgkzj10");
 		productRequestJson.setDescription("Stationery Items");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);

@@ -54,7 +54,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(50);
 		productResponseJson.setSku("00B");
-		productResponseJson.setDepartmentId(20);
+		productResponseJson.setDepartmentId("gjfchszckh20");
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setCreatedBy("Jill");
 		productResponseJson.setCreatedDate(date);
@@ -82,7 +82,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setQuantity(10);
 		productResponseJson.setPrice(20);
 		productResponseJson.setSku("00A");
-		productResponseJson.setDepartmentId(10);
+		productResponseJson.setDepartmentId("gjfchszckh20");
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setCreatedBy("Jill");
 		productResponseJson.setCreatedDate(date);
@@ -107,7 +107,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setQuantity(200);
 		productResponseJson.setPrice(100);
 		productResponseJson.setSku("00A");
-		productResponseJson.setDepartmentId(20);
+		productResponseJson.setDepartmentId("gjfchszckh20");
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setCreatedBy("Jill");
 		productResponseJson.setCreatedDate(date);
@@ -121,7 +121,7 @@ public class ProductControllerMockTest {
 		productBO.setQuantity(200);
 		productBO.setPrice(100);
 		productBO.setSku("00A");
-		productBO.setDepartmentId(10);
+		productBO.setDepartmentId("gjfchszckh20");
 		productBO.setDescription("Stationery Items");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -147,7 +147,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(5000);
 		productResponseJson.setSku("00B");
-		productResponseJson.setDepartmentId(20);
+		productResponseJson.setDepartmentId("gjfchszckh20");
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setModifiedBy("Jill");
 		productResponseJson.setModifiedDate(date);

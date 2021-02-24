@@ -9,7 +9,7 @@ public class ProductDTO {
 	private int quantity;
 	private float price;
 	private String sku;
-	private int departmentId;
+	private String departmentId;
 	private String description;
 	private String createdBy;
 	private Date createdDate;
@@ -64,11 +64,11 @@ public class ProductDTO {
 		this.sku = sku;
 	}
 
-	public int getDepartmentId() {
+	public String getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(int departmentId) {
+	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
 

@@ -52,7 +52,7 @@ public class ProductBOServicesMockTest {
 		productBO.setQuantity(100);
 		productBO.setPrice(500);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -77,8 +77,7 @@ public class ProductBOServicesMockTest {
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -102,8 +101,7 @@ public class ProductBOServicesMockTest {
 		productDTO.setQuantity(100);
 		productDTO.setPrice(200);
 		productDTO.setSku("00C");
-		productDTO.setDepartmentId(40);
-		productDTO.setDepartmentId(30);
+		productDTO.setDepartmentId("gdshgckjzc30");
 		productDTO.setDescription("Stationary");
 		productDTO.setCreatedBy("Jill");
 		productDTO.setCreatedDate(date);
@@ -118,8 +116,7 @@ public class ProductBOServicesMockTest {
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -143,8 +140,7 @@ public class ProductBOServicesMockTest {
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId(30);
-		productBO.setDepartmentId(30);
+		productBO.setDepartmentId("gdshgckjzc30");
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
