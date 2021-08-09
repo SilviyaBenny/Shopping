@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
 import com.shopping.boservices.ProductBOServices;
 import com.shopping.controller.validator.ProductRequestValidator;
+import com.shopping.mapper.botoresponse.ProductBOtoResponseJsonMapper;
+import com.shopping.mapper.requesttobo.ProductRequestJsonToBOMapper;
 import com.shopping.requestjson.ProductRequestJson;
-import com.shopping.requesttobomapper.ProductRequestJsonToBOMapper;
 import com.shopping.responsejson.ProductResponseJson;
 
 @RestController
@@ -40,7 +40,7 @@ public class ProductController implements IProductController {
 		ProductBO respBo = productBoService.create(bo);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
-		return new ResponseEntity<ProductResponseJson>(responseJson,HttpStatus.OK);
+		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
 	public ResponseEntity<List<ProductResponseJson>> getAll() {
@@ -55,29 +55,29 @@ public class ProductController implements IProductController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
-	public ResponseEntity<ProductResponseJson> getById(String recordId) {
-		LOGGER.info("Incoming Request" + recordId);
-		ProductBO respBo = productBoService.getById(recordId);
+	public ResponseEntity<ProductResponseJson> getById(int id) {
+		LOGGER.info("Incoming Request" + id);
+		ProductBO respBo = productBoService.getById(id);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
 		return ResponseEntity.status(HttpStatus.OK).body(responseJson);
 	}
 
-	public ResponseEntity<ProductResponseJson> update(String recordId, @RequestBody ProductRequestJson requestJson) {
-		
+	public ResponseEntity<ProductResponseJson> update(int id, @RequestBody ProductRequestJson requestJson) {
+
 		validator.validateProductUpdate(requestJson);
-		LOGGER.info("Incoming Request" + recordId);
+		LOGGER.info("Incoming Request" + id);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
-		ProductBO respBo = productBoService.update(bo, recordId);
+		ProductBO respBo = productBoService.update(bo, id);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
 		LOGGER.info("Outgoing Response " + responseJson);
-		return new ResponseEntity<ProductResponseJson>(responseJson,HttpStatus.OK);
+		return new ResponseEntity<ProductResponseJson>(responseJson, HttpStatus.OK);
 	}
 
-	public ResponseEntity<Void> deleteById(String recordId) {
+	public ResponseEntity<Void> deleteById(int id) {
 
-		LOGGER.info("Incoming Request" + recordId);
-		int numberofRecords = productBoService.deleteById(recordId);
+		LOGGER.info("Incoming Request" + id);
+		int numberofRecords = productBoService.deleteById(id);
 		LOGGER.info("Outgoing Response" + numberofRecords);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DepartmentDTO {
 
-	private String recordId;
+	private int id;
 	private String departmentName;
 	private String description;
 	private String createdBy;
@@ -14,17 +14,17 @@ public class DepartmentDTO {
 	
 	@Override
 	public String toString() {
-		return "DepartmentBO [recordId=" + recordId + ", departmentName=" + departmentName + ", description="
+		return "DepartmentBO [id=" + id + ", departmentName=" + departmentName + ", description="
 				+ description + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy="
 				+ modifiedBy + ", modifiedDate=" + modifiedDate + "]";
 	}
 
-	public String getRecordId() {
-		return recordId;
+	public int getId() {
+		return id;
 	}
 
-	public void setRecordId(String recordId) {
-		this.recordId = recordId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDepartmentName() {

@@ -35,7 +35,7 @@ public class DepartmentCURDTest extends TestBase {
 		ResponseEntity<DepartmentResponseJson> resp = departmentController.create(departmentRequestJson);
 		assertRequest(departmentRequestJson, resp.getBody());
 
-		String createdId = resp.getBody().getRecordId();
+		int createdId = resp.getBody().getId();
 
 		resp = departmentController.getById(createdId);
 		assertRequest(departmentRequestJson, resp.getBody());

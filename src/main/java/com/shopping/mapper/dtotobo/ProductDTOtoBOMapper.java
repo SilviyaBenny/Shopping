@@ -1,4 +1,4 @@
-package com.shopping.dtotobo.mapper;
+package com.shopping.mapper.dtotobo;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ public class ProductDTOtoBOMapper {
 
 	public ProductBO mapObject(ProductDTO dto) {
 		ProductBO productBO = new ProductBO();
-		productBO.setRecordId(dto.getRecordId());
+		productBO.setId(dto.getId());
 		productBO.setName(dto.getName());
 		productBO.setPrice(dto.getPrice());
 		productBO.setQuantity(dto.getQuantity());

@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shopping.BOtoResponse.mapper.DepartmentBOtoResponseJsonMapper;
 import com.shopping.bo.DepartmentBO;
 import com.shopping.boservices.DepartmentBOServices;
 import com.shopping.controller.validator.DepartmentRequestValidator;
+import com.shopping.mapper.botoresponse.DepartmentBOtoResponseJsonMapper;
+import com.shopping.mapper.requesttobo.DepartmentRequestJsonToBOMapper;
 import com.shopping.requestjson.DepartmentRequestJson;
-import com.shopping.requesttobomapper.DepartmentRequestJsonToBOMapper;
 import com.shopping.responsejson.DepartmentResponseJson;
 
 
@@ -55,28 +55,28 @@ public class DepartmentController implements IDepartmentController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJsonList);
 	}
 
-	public ResponseEntity<DepartmentResponseJson> getById(String recordId) {
-		LOGGER.info("Incoming request " + recordId);
-		DepartmentBO respBO = departmentBOServices.getById(recordId);
+	public ResponseEntity<DepartmentResponseJson> getById(int id) {
+		LOGGER.info("Incoming request " + id);
+		DepartmentBO respBO = departmentBOServices.getById(id);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
 		LOGGER.info("Outgoing Response " + respJson);
 		return ResponseEntity.status(HttpStatus.OK).body(respJson);
 	}
 
-	public ResponseEntity<DepartmentResponseJson> update(String recordId,
+	public ResponseEntity<DepartmentResponseJson> update(int id,
 			@RequestBody DepartmentRequestJson requestJson) {
 		validator.validateDepartmentUpdate(requestJson);
-		LOGGER.info("Incoming request " + recordId);
+		LOGGER.info("Incoming request " + id);
 		DepartmentBO departmentBO = requestJsonToBOMapper.mapObject(requestJson);
-		DepartmentBO respBO = departmentBOServices.update(departmentBO, recordId);
+		DepartmentBO respBO = departmentBOServices.update(departmentBO, id);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
 		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<Void> deleteById(String recordId) {
-		LOGGER.info("Incoming Request" + recordId);
-		int numberofRecords = departmentBOServices.deleteById(recordId);
+	public ResponseEntity<Void> deleteById(int id) {
+		LOGGER.info("Incoming Request" + id);
+		int numberofRecords = departmentBOServices.deleteById(id);
 		LOGGER.info("Outgoing Response" + numberofRecords);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

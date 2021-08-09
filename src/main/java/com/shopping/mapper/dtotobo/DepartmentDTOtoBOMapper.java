@@ -1,4 +1,4 @@
-package com.shopping.dtotobo.mapper;
+package com.shopping.mapper.dtotobo;
 
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import com.shopping.repository.dto.DepartmentDTO;
 public class DepartmentDTOtoBOMapper {
 	public DepartmentBO mapObject(DepartmentDTO dto) {
 		DepartmentBO bo = new DepartmentBO();
-		bo.setRecordId(dto.getRecordId());
+		bo.setId(dto.getId());
 		bo.setDepartmentName(dto.getDepartmentName());
 		bo.setDescription(dto.getDescription());
 		bo.setCreatedBy(dto.getCreatedBy());

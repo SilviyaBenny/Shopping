@@ -18,8 +18,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.shopping.bo.DepartmentBO;
-import com.shopping.botodto.mapper.DepartmentBOtoDTOMapper;
-import com.shopping.dtotobo.mapper.DepartmentDTOtoBOMapper;
+import com.shopping.mapper.botodto.DepartmentBOtoDTOMapper;
+import com.shopping.mapper.dtotobo.DepartmentDTOtoBOMapper;
 import com.shopping.repository.DepartmentDAO;
 import com.shopping.repository.dto.DepartmentDTO;
 
@@ -45,7 +45,7 @@ public class DepartmentBOServicesMockTest {
 
 		Date date = new Date();
 		DepartmentBO departmentBO = new DepartmentBO();
-		departmentBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		departmentBO.setId(2);
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
 		departmentBO.setCreatedBy("Mike");
@@ -65,7 +65,7 @@ public class DepartmentBOServicesMockTest {
 	public void getByIdTest() {
 		Date date = new Date();
 		DepartmentBO departmentBO = new DepartmentBO();
-		departmentBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		departmentBO.setId(2);
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
 		departmentBO.setCreatedBy("Mike");
@@ -73,10 +73,10 @@ public class DepartmentBOServicesMockTest {
 		departmentBO.setModifiedBy("Mike");
 		departmentBO.setModifiedDate(date);
 		DepartmentDTO departmentDTO = new DepartmentDTO();
-		when(departmentDAO.getById(Mockito.<String>any())).thenReturn(departmentDTO);
+		when(departmentDAO.getById(Mockito.anyInt())).thenReturn(departmentDTO);
 		when(dtoToboMapper.mapObject(Mockito.<DepartmentDTO>any())).thenReturn(departmentBO);
 
-		DepartmentBO bo = departmentBOServices.getById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		DepartmentBO bo = departmentBOServices.getById(2);
 		assertNotNull(bo);
 	}
 
@@ -85,7 +85,7 @@ public class DepartmentBOServicesMockTest {
 		Date date = new Date();
 		List<DepartmentDTO> departmentDTOList = new ArrayList<>();
 		DepartmentDTO departmentDTO = new DepartmentDTO();
-		departmentDTO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		departmentDTO.setId(2);
 		departmentDTO.setDepartmentName("Home");
 		departmentDTO.setDescription("Home Appliances");
 		departmentDTO.setCreatedBy("Mike");
@@ -95,7 +95,7 @@ public class DepartmentBOServicesMockTest {
 		departmentDTOList.add(departmentDTO);
 
 		DepartmentBO departmentBO = new DepartmentBO();
-		departmentBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		departmentBO.setId(2);
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
 		departmentBO.setCreatedBy("Mike");
@@ -114,7 +114,7 @@ public class DepartmentBOServicesMockTest {
 	public void upadteTest() {
 		Date date = new Date();
 		DepartmentBO departmentBO = new DepartmentBO();
-		departmentBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		departmentBO.setId(2);
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
 		departmentBO.setCreatedBy("Mike");
@@ -122,18 +122,18 @@ public class DepartmentBOServicesMockTest {
 		departmentBO.setModifiedBy("Mike");
 		departmentBO.setModifiedDate(date);
 		DepartmentDTO departmentDTO = new DepartmentDTO();
-		when(departmentDAO.update(Mockito.<DepartmentDTO>any(), Mockito.<String>any())).thenReturn(departmentDTO);
+		when(departmentDAO.update(Mockito.<DepartmentDTO>any(), Mockito.anyInt())).thenReturn(departmentDTO);
 		when(boTodtoMapper.mapObject(Mockito.<DepartmentBO>any())).thenReturn(departmentDTO);
 		when(dtoToboMapper.mapObject(Mockito.<DepartmentDTO>any())).thenReturn(departmentBO);
 
-		DepartmentBO bo = departmentBOServices.update(departmentBO, "ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		DepartmentBO bo = departmentBOServices.update(departmentBO, 2);
 		assertNotNull(bo);
 	}
 
 	@Test
 	public void deleteByIdTest() {
-		when(departmentDAO.deleteById(Mockito.<String>any())).thenReturn(1);
-		int departmentBO = departmentBOServices.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		when(departmentDAO.deleteById(Mockito.anyInt())).thenReturn(1);
+		int departmentBO = departmentBOServices.deleteById(2);
 		assertNotNull(departmentBO);
 	}
 

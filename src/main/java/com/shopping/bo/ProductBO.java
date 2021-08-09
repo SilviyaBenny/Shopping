@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class ProductBO {
 
-	private String recordId;
+	private int id;
 	private String name;
 	private int quantity;
 	private float price;
 	private String sku;
-	private String departmentId;
+	private int departmentId;
 	private String description;
 	private String createdBy;
 	private Date createdDate;
@@ -18,19 +18,19 @@ public class ProductBO {
 	
 	@Override
 	public String toString() {
-		return "ProductBO [recordId=" + recordId + ", name=" + name + ", quantity=" + quantity + ", price=" + price
+		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
 				+ ", sku=" + sku + ", departmentId=" + departmentId + ", description=" + description + ", createdBy="
 				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
 				+ modifiedDate + "]";
 	}
 
-	public String getRecordId() {
-		return recordId;
+	public int getId() {
+		return id;
 	}
 
 	
-	public void setRecordId(String recordId) {
-		this.recordId = recordId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -64,11 +64,11 @@ public class ProductBO {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
-	public String getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(String departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 

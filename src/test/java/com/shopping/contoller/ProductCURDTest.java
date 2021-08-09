@@ -24,12 +24,13 @@ public class ProductCURDTest extends TestBase {
 
 		Date date = new Date();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
+		
 		productRequestJson.setName("Book");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId("fhsjfjjv20");
-		productRequestJson.setDescription("Stationery Items");
+		productRequestJson.setDepartmentId(20);
+		productRequestJson.setDescription("Stationary");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);
 		productRequestJson.setModifiedBy("testUser");
@@ -38,17 +39,17 @@ public class ProductCURDTest extends TestBase {
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertResponse(productRequestJson, resp.getBody());
 
-		String createdId = resp.getBody().getRecordId();
+		int createdId = resp.getBody().getId();
 
 		resp = productController.getById(createdId);
 		assertResponse(productRequestJson, resp.getBody());
-
-		productRequestJson.setName("Pen");
+		
+		productRequestJson.setName("Book");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId("fhsjfjjv20");
-		productRequestJson.setDescription("Stationery Items");
+		productRequestJson.setDepartmentId(20);
+		productRequestJson.setDescription("Stationary");
 		productRequestJson.setModifiedBy("Jill");
 		productRequestJson.setModifiedDate(date);
 
@@ -70,6 +71,7 @@ public class ProductCURDTest extends TestBase {
 	private void assertResponse(ProductRequestJson requestJson, ProductResponseJson responseJson) {
 		assertNotNull(requestJson);
 		assertNotNull(responseJson);
+		//assertEquals(requestJson.getId(), responseJson.getId());
 		assertEquals(requestJson.getName(), responseJson.getName());
 		assertEquals(requestJson.getQuantity(), responseJson.getQuantity());
 		assertEquals(requestJson.getPrice(), responseJson.getPrice());

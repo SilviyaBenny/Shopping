@@ -15,10 +15,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
-import com.shopping.botodto.mapper.ProductBOtoDTOMapper;
-import com.shopping.dtotobo.mapper.ProductDTOtoBOMapper;
+import com.shopping.mapper.botodto.ProductBOtoDTOMapper;
+import com.shopping.mapper.botoresponse.ProductBOtoResponseJsonMapper;
+import com.shopping.mapper.dtotobo.ProductDTOtoBOMapper;
 import com.shopping.repository.ProductDAO;
 import com.shopping.repository.dto.ProductDTO;
 
@@ -47,12 +47,12 @@ public class ProductBOServicesMockTest {
 		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
-		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productBO.setId(2);
 		productBO.setName("Pen");
 		productBO.setQuantity(100);
 		productBO.setPrice(500);
 		productBO.setSku("00B");
-		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDepartmentId(2);
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -72,20 +72,20 @@ public class ProductBOServicesMockTest {
 		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
-		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productBO.setId(2);
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDepartmentId(2);
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
 		productBO.setModifiedBy("Jill");
 		productBO.setModifiedDate(date);
-		when(productDAO.getById(Mockito.<String>any())).thenReturn(productDTO);
+		when(productDAO.getById(Mockito.anyInt())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
-		ProductBO bo = productBoServices.getById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		ProductBO bo = productBoServices.getById(2);
 		assertNotNull(bo);
 
 	}
@@ -96,12 +96,12 @@ public class ProductBOServicesMockTest {
 		Date date = new Date();
 		List<ProductDTO> productDTOlist = new ArrayList<>();
 		ProductDTO productDTO = new ProductDTO();
-		productDTO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productDTO.setId(1);
 		productDTO.setName("Pen");
 		productDTO.setQuantity(100);
 		productDTO.setPrice(200);
 		productDTO.setSku("00C");
-		productDTO.setDepartmentId("gdshgckjzc30");
+		productDTO.setDepartmentId(2);
 		productDTO.setDescription("Stationary");
 		productDTO.setCreatedBy("Jill");
 		productDTO.setCreatedDate(date);
@@ -111,12 +111,12 @@ public class ProductBOServicesMockTest {
 		productDTOlist.add(productDTO);
 
 		ProductBO productBO = new ProductBO();
-		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productBO.setId(1);
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
 		productBO.setPrice(5000);
 		productBO.setSku("00B");
-		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDepartmentId(2);
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -135,29 +135,29 @@ public class ProductBOServicesMockTest {
 		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
-		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productBO.setId(2);
 		productBO.setName("Pen");
 		productBO.setQuantity(200);
-		productBO.setPrice(5000);
+		productBO.setPrice(500);
 		productBO.setSku("00B");
-		productBO.setDepartmentId("gdshgckjzc30");
+		productBO.setDepartmentId(2);
 		productBO.setDescription("Stationary");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
 		productBO.setModifiedBy("Jill");
 		productBO.setModifiedDate(date);
-		when(productDAO.update(Mockito.<ProductDTO>any(), Mockito.<String>any())).thenReturn(productDTO);
+		when(productDAO.update(Mockito.<ProductDTO>any(), Mockito.anyInt())).thenReturn(productDTO);
 		when(boTodtoMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productDTO);
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
 
-		ProductBO bo = productBoServices.update(productBO, "ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		ProductBO bo = productBoServices.update(productBO, 2);
 		assertNotNull(bo);   
 	}
 
 	@Test
 	public void deleteById() {
-		when(productDAO.deleteById(Mockito.<String>any())).thenReturn(1);
-		int bo= productBoServices.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		when(productDAO.deleteById(Mockito.anyInt())).thenReturn(1);
+		int bo= productBoServices.deleteById(2);
 		assertNotNull(bo);
 	}
 

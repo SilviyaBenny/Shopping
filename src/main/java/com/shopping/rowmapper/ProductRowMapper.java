@@ -12,12 +12,12 @@ public class ProductRowMapper implements RowMapper<ProductDTO> {
 	public ProductDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ProductDTO productDTO = new ProductDTO();
 
-		productDTO.setRecordId(rs.getString("RECORD_ID"));
+		productDTO.setId(rs.getInt("ID"));
 		productDTO.setName(rs.getString("NAME"));
 		productDTO.setQuantity(rs.getInt("QUANTITY"));
 		productDTO.setPrice(rs.getFloat("PRICE"));
 		productDTO.setSku(rs.getString("SKU"));
-		productDTO.setDepartmentId(rs.getString("DEPARTMENT_ID"));
+		productDTO.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
 		productDTO.setDescription(rs.getString("DESCRIPTION"));
 		productDTO.setCreatedBy(rs.getString("CREATED_BY"));
 		productDTO.setCreatedDate(rs.getDate("CREATED_DATE"));

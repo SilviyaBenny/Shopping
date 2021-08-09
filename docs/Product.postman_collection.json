@@ -7,6 +7,17 @@
 	"item": [
 		{
 			"name": "POST",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -28,7 +39,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \r\n    \r\n    \"name\":\"Book\",\r\n    \"quantity\":50,\r\n    \"price\":100,\r\n    \"sku\":\"01C\",\r\n    \"departmentId\":10\r\n}",
+					"raw": "{  \r\n    \r\n    \"name\":\"Book\",\r\n    \"quantity\":10 ,\r\n    \"price\":200,\r\n    \"sku\":\"01B\",\r\n    \"departmentId\":16,\r\n    \"description\":\"Stationay Items\",\r\n    \"createdBy\":\"Jake\",\r\n    \"modifiedBy\":\"Jimmy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -130,7 +141,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/product/7",
+					"raw": "http://localhost:8080/product/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -138,7 +149,7 @@
 					"port": "8080",
 					"path": [
 						"product",
-						"7"
+						"5"
 					]
 				}
 			},
@@ -157,7 +168,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \r\n    \r\n    \"name\":\"Orange Book\",\r\n    \"quantity\":1000,\r\n    \"price\":100,\r\n    \"sku\":\"01Q\",\r\n    \"departmentId\":30\r\n}",
+					"raw": "{  \r\n    \r\n    \"name\":\"Marker\",\r\n    \"quantity\":300,\r\n    \"price\":500,\r\n    \"sku\":\"00B\",\r\n    \"departmentId\":30,\r\n    \"description\":\"Stationay Items\",\r\n    \"createdBy\": \"Martin\",\r\n    \"modifiedBy\":\"Jill\"\r\n\r\n   \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -214,6 +225,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

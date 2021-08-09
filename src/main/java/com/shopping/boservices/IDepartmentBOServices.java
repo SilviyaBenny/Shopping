@@ -8,7 +8,7 @@ public interface IDepartmentBOServices {
 
 	public DepartmentBO create(DepartmentBO bo);
 	public List<DepartmentBO> getAll();
-	public DepartmentBO getById(String recordId);
-	public DepartmentBO update(DepartmentBO departmentBO, String recordId);
-	public int deleteById(String recordId);
+	public DepartmentBO getById(int id);
+	public DepartmentBO update(DepartmentBO departmentBO, int id);
+	public int deleteById(int id);
 }

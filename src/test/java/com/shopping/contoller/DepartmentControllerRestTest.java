@@ -14,11 +14,11 @@ import com.shopping.controller.DepartmentController;
 import com.shopping.requestjson.DepartmentRequestJson;
 import com.shopping.responsejson.DepartmentResponseJson;
 
-public class DepartmentControllerRestTest extends TestBase{
+public class DepartmentControllerRestTest extends TestBase {
 
 	@Autowired
 	private DepartmentController departmentController;
-	
+
 	@Test
 	@Order(1)
 	public void createTest() {
@@ -30,25 +30,25 @@ public class DepartmentControllerRestTest extends TestBase{
 		departmentRequestJson.setCreatedDate(date);
 		departmentRequestJson.setModifiedBy("testUser");
 		departmentRequestJson.setModifiedDate(date);
-		
+
 		ResponseEntity<DepartmentResponseJson> resp = departmentController.create(departmentRequestJson);
 		assertNotNull(resp);
 	}
-	
+
 	@Test
 	@Order(2)
 	public void getAlltest() {
 		ResponseEntity<List<DepartmentResponseJson>> resp = departmentController.getAll();
 		assertNotNull(resp);
 	}
-	
+
 	@Test
 	@Order(3)
 	public void getById() {
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById("yreutiewti76534tgje");
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById(2);
 		assertNotNull(resp);
 	}
-	
+
 	@Test
 	@Order(4)
 	public void updateTest() {
@@ -56,19 +56,17 @@ public class DepartmentControllerRestTest extends TestBase{
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Garden");
 		departmentRequestJson.setDescription("Gardening Area");
-		//departmentRequestJson.setCreatedBy("Jill");
-		//departmentRequestJson.setCreatedDate(date);
 		departmentRequestJson.setModifiedBy("testUser");
 		departmentRequestJson.setModifiedDate(date);
 
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.update("yreutiewti76534tgje", departmentRequestJson);
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.update(2, departmentRequestJson);
 		assertNotNull(resp);
 	}
-	
+
 	@Test
 	@Order(5)
 	public void deleteByIdTest() {
-		ResponseEntity<Void> resp = departmentController.deleteById("yreutiewti76534tgje");
+		ResponseEntity<Void> resp = departmentController.deleteById(2);
 		assertNotNull(resp);
 	}
 }

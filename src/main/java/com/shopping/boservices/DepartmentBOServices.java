@@ -12,15 +12,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import com.shopping.bo.DepartmentBO;
-import com.shopping.botodto.mapper.DepartmentBOtoDTOMapper;
 import com.shopping.config.EntityRequstContext;
 import com.shopping.controller.DepartmentController;
-import com.shopping.dtotobo.mapper.DepartmentDTOtoBOMapper;
 import com.shopping.error.ShoppingError;
 import com.shopping.exception.DatabaseException;
 import com.shopping.exception.ErrorCode;
 import com.shopping.exception.ErrorType;
 import com.shopping.exception.ItemNotFoundException;
+import com.shopping.mapper.botodto.DepartmentBOtoDTOMapper;
+import com.shopping.mapper.dtotobo.DepartmentDTOtoBOMapper;
 import com.shopping.repository.DepartmentDAO;
 import com.shopping.repository.dto.DepartmentDTO;
 
@@ -57,10 +57,10 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 		return boList;
 	}
 
-	public DepartmentBO getById(String recordId) {
-		LOGGER.info("Incoming Request:" + recordId);
+	public DepartmentBO getById(int id) {
+		LOGGER.info("Incoming Request:" + id);
 		try {
-			DepartmentDTO respDTO = departmentDAO.getById(recordId);
+			DepartmentDTO respDTO = departmentDAO.getById(id);
 			DepartmentBO respBO = dtoToboMapper.mapObject(respDTO);
 			LOGGER.info("Outgoing response:" + respBO);
 			return respBO;
@@ -69,15 +69,15 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
-					"Item with id " + recordId + "not found");
+					"Item with id " + id + "not found");
 		}
 	}
 
-	public DepartmentBO update(DepartmentBO departmentBO, String recordId) {
-		LOGGER.info("Incoming Request:" + recordId);
+	public DepartmentBO update(DepartmentBO departmentBO, int id) {
+		LOGGER.info("Incoming Request:" + id);
 		try {
 		DepartmentDTO dto = boTodtoMapper.mapObject(departmentBO);
-		DepartmentDTO respDTO = departmentDAO.update(dto, recordId);
+		DepartmentDTO respDTO = departmentDAO.update(dto, id);
 		DepartmentBO respBO = dtoToboMapper.mapObject(respDTO);
 		LOGGER.info("Outgoing response:" + respBO);
 		return respBO;
@@ -86,13 +86,13 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
 			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
-					"Item with id " + recordId + "not found");
+					"Item with id " + id + "not found");
 		}
 	}
 
-	public int deleteById(String recordId) {
-		LOGGER.info("Incoming Request:" + recordId);
-		int numberofRecords = departmentDAO.deleteById(recordId);
+	public int deleteById(int id) {
+		LOGGER.info("Incoming Request:" + id);
+		int numberofRecords = departmentDAO.deleteById(id);
 		LOGGER.info("Outgoing response:" + numberofRecords);
 		return numberofRecords;
 	}

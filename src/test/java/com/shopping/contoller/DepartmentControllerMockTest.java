@@ -16,13 +16,13 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
-import com.shopping.BOtoResponse.mapper.DepartmentBOtoResponseJsonMapper;
 import com.shopping.bo.DepartmentBO;
 import com.shopping.boservices.DepartmentBOServices;
 import com.shopping.controller.DepartmentController;
 import com.shopping.controller.validator.DepartmentRequestValidator;
+import com.shopping.mapper.botoresponse.DepartmentBOtoResponseJsonMapper;
+import com.shopping.mapper.requesttobo.DepartmentRequestJsonToBOMapper;
 import com.shopping.requestjson.DepartmentRequestJson;
-import com.shopping.requesttobomapper.DepartmentRequestJsonToBOMapper;
 import com.shopping.responsejson.DepartmentResponseJson;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -48,7 +48,7 @@ public class DepartmentControllerMockTest {
 	public void createTest() {
 		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		departmentResponseJson.setCreatedBy("Jill");
@@ -69,7 +69,7 @@ public class DepartmentControllerMockTest {
 	public void getAllTest() {
 		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		departmentResponseJson.setCreatedBy("Jill");
@@ -80,7 +80,7 @@ public class DepartmentControllerMockTest {
 		
 		List<DepartmentBO> departmentBOList = new ArrayList<>();
 		DepartmentBO departmentBO = new DepartmentBO();
-		departmentBO.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		departmentBO.setId(2);
 		departmentBO.setDepartmentName("Home");
 		departmentBO.setDescription("Home Appliances");
 		departmentBO.setCreatedBy("Jill");
@@ -99,7 +99,7 @@ public class DepartmentControllerMockTest {
 	public void getByIdTest() {
 		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		departmentResponseJson.setCreatedBy("Jill");
@@ -109,16 +109,16 @@ public class DepartmentControllerMockTest {
 		
 		
 		DepartmentBO departmentBO = new DepartmentBO();
-		when(departmentBOServices.getById(Mockito.<String>any())).thenReturn(departmentBO);
+		when(departmentBOServices.getById(Mockito.anyInt())).thenReturn(departmentBO);
 		when(botoResponseMapper.mapObject(Mockito.<DepartmentBO>any())).thenReturn(departmentResponseJson);
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.getById(2);
 		assertNotNull(resp);
 	}
 	@Test
 	public void updateTest() {
 		Date date = new Date();
 		DepartmentResponseJson departmentResponseJson = new DepartmentResponseJson();
-		departmentResponseJson.setRecordId("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		departmentResponseJson.setId(2);
 		departmentResponseJson.setDepartmentName("Home");
 		departmentResponseJson.setDescription("Home Appliances");
 		departmentResponseJson.setCreatedBy("Jill");
@@ -128,18 +128,18 @@ public class DepartmentControllerMockTest {
 		
 		DepartmentBO departmentBO = new DepartmentBO();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
-		when(departmentBOServices.update(Mockito.<DepartmentBO>any(),Mockito.<String>any())).thenReturn(departmentBO);
+		when(departmentBOServices.update(Mockito.<DepartmentBO>any(),Mockito.anyInt())).thenReturn(departmentBO);
 		when(requestJsonToBOMapper.mapObject(Mockito.<DepartmentRequestJson>any())).thenReturn(departmentBO);
 		when(botoResponseMapper.mapObject(Mockito.<DepartmentBO>any())).thenReturn(departmentResponseJson);
 		
-		ResponseEntity<DepartmentResponseJson> resp = departmentController.update("f470b26f-d1a0-461a-b84a-ad8504a2a685",departmentRequestJson);
+		ResponseEntity<DepartmentResponseJson> resp = departmentController.update(2,departmentRequestJson);
 		assertNotNull(resp);
 	}
 	@Test
 	public void deleteByIdTest() {
 		
-		when(departmentBOServices.deleteById(Mockito.<String>any())).thenReturn(1);
-		ResponseEntity<Void> resp = departmentController.deleteById("f470b26f-d1a0-461a-b84a-ad8504a2a685");
+		when(departmentBOServices.deleteById(Mockito.anyInt())).thenReturn(1);
+		ResponseEntity<Void> resp = departmentController.deleteById(2);
 		assertNotNull(resp);
 	}
 }

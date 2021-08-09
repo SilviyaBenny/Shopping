@@ -21,11 +21,11 @@ public interface IDepartmentController {
 	public ResponseEntity<DepartmentResponseJson> create(@RequestBody DepartmentRequestJson requestJson);
 	@GetMapping()
 	public ResponseEntity<List<DepartmentResponseJson>> getAll();
-	@GetMapping("{recordId}")
-	public ResponseEntity<DepartmentResponseJson> getById(@PathVariable("recordId") String recordId);
-	@PutMapping("{recordId}")
-	public ResponseEntity<DepartmentResponseJson> update(@PathVariable("recordId") String recordId,
+	@GetMapping("{id}")
+	public ResponseEntity<DepartmentResponseJson> getById(@PathVariable("id") int id);
+	@PutMapping("{id}")
+	public ResponseEntity<DepartmentResponseJson> update(@PathVariable("id") int id,
 			@RequestBody DepartmentRequestJson requestJson);
-	@DeleteMapping("{recordId}")
-	public ResponseEntity<Void> deleteById(@PathVariable("recordId") String recordId);
+	@DeleteMapping("{id}")
+	public ResponseEntity<Void> deleteById(@PathVariable("id") int id);
 }
