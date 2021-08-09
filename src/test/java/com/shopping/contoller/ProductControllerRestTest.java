@@ -29,7 +29,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId("dghsgkzj10");
+		productRequestJson.setDepartmentId(2);
 		productRequestJson.setDescription("Stationery Items");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);
@@ -54,7 +54,7 @@ public class ProductControllerRestTest extends TestBase {
 	@Order(3)
 	public void getByIdTest() {
 
-		ResponseEntity<ProductResponseJson> resp = productController.getById("ytu5683746etfayufgya");
+		ResponseEntity<ProductResponseJson> resp = productController.getById(2);
 		assertNotNull(resp);
 	}
 
@@ -68,7 +68,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId("dghsgkzj10");
+		productRequestJson.setDepartmentId(2);
 		productRequestJson.setDescription("Stationery Items");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);
@@ -76,7 +76,7 @@ public class ProductControllerRestTest extends TestBase {
 		productRequestJson.setModifiedDate(date);
 
 
-		ResponseEntity<ProductResponseJson> resp = productController.update("ytu5683746etfayufgya", productRequestJson);
+		ResponseEntity<ProductResponseJson> resp = productController.update(2, productRequestJson);
 		assertNotNull(resp);
 	}
 
@@ -84,7 +84,7 @@ public class ProductControllerRestTest extends TestBase {
 	@Order(5)
 	public void deleteByIdTest() {
 
-		ResponseEntity<Void> resp = productController.deleteById("ytu5683746etfayufgya");
+		ResponseEntity<Void> resp = productController.deleteById(2);
 		assertNotNull(resp);
 	}
 

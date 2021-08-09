@@ -1,4 +1,4 @@
-package com.shopping.requesttobomapper;
+package com.shopping.mapper.requesttobo;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ public class ProductRequestJsonToBOMapper {
 
 	public ProductBO mapObject(ProductRequestJson requestJson) {
 		ProductBO bo = new ProductBO();
-		bo.setRecordId(requestJson.getRecordId());
+		bo.setId(requestJson.getId());
 		bo.setName(requestJson.getName());
 		bo.setPrice(requestJson.getPrice());
 		bo.setQuantity(requestJson.getQuantity());

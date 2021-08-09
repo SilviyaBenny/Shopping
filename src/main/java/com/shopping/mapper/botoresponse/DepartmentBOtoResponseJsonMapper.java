@@ -1,4 +1,4 @@
-package com.shopping.BOtoResponse.mapper;
+package com.shopping.mapper.botoresponse;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ public class DepartmentBOtoResponseJsonMapper {
 	
 	public DepartmentResponseJson mapObject(DepartmentBO bo) {
 		DepartmentResponseJson responseJson = new DepartmentResponseJson();
-		responseJson.setRecordId(bo.getRecordId());
+		responseJson.setId(bo.getId());
 		responseJson.setDepartmentName(bo.getDepartmentName());
 		responseJson.setDescription(bo.getDescription());
 		responseJson.setCreatedBy(bo.getCreatedBy());

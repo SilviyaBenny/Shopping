@@ -17,13 +17,13 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
-import com.shopping.BOtoResponse.mapper.ProductBOtoResponseJsonMapper;
 import com.shopping.bo.ProductBO;
 import com.shopping.boservices.ProductBOServices;
 import com.shopping.controller.ProductController;
 import com.shopping.controller.validator.ProductRequestValidator;
+import com.shopping.mapper.botoresponse.ProductBOtoResponseJsonMapper;
+import com.shopping.mapper.requesttobo.ProductRequestJsonToBOMapper;
 import com.shopping.requestjson.ProductRequestJson;
-import com.shopping.requesttobomapper.ProductRequestJsonToBOMapper;
 import com.shopping.responsejson.ProductResponseJson;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -49,12 +49,12 @@ public class ProductControllerMockTest {
 	public void createTest() {
 		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productResponseJson.setId(2);
 		productResponseJson.setName("Pen");
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(50);
 		productResponseJson.setSku("00B");
-		productResponseJson.setDepartmentId("gjfchszckh20");
+		productResponseJson.setDepartmentId(2);
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setCreatedBy("Jill");
 		productResponseJson.setCreatedDate(date);
@@ -77,12 +77,12 @@ public class ProductControllerMockTest {
 
 		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productResponseJson.setId(2);
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(10);
 		productResponseJson.setPrice(20);
 		productResponseJson.setSku("00A");
-		productResponseJson.setDepartmentId("gjfchszckh20");
+		productResponseJson.setDepartmentId(2);
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setCreatedBy("Jill");
 		productResponseJson.setCreatedDate(date);
@@ -90,10 +90,10 @@ public class ProductControllerMockTest {
 		productResponseJson.setModifiedDate(date);
 
 		ProductBO productBO = new ProductBO();
-		when(productBoService.getById(Mockito.<String>any())).thenReturn(productBO);
+		when(productBoService.getById(Mockito.anyInt())).thenReturn(productBO);
 		when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
 
-		ResponseEntity<ProductResponseJson> resp = productController.getById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		ResponseEntity<ProductResponseJson> resp = productController.getById(2);
 		assertNotNull(resp);
 	}
 
@@ -102,12 +102,12 @@ public class ProductControllerMockTest {
 
 		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productResponseJson.setId(2);
 		productResponseJson.setName("Book");
 		productResponseJson.setQuantity(200);
 		productResponseJson.setPrice(100);
 		productResponseJson.setSku("00A");
-		productResponseJson.setDepartmentId("gjfchszckh20");
+		productResponseJson.setDepartmentId(2);
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setCreatedBy("Jill");
 		productResponseJson.setCreatedDate(date);
@@ -116,12 +116,12 @@ public class ProductControllerMockTest {
 
 		List<ProductBO> productBOList = new ArrayList<>();
 		ProductBO productBO = new ProductBO();
-		productBO.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		//productBO.setId(2);
 		productBO.setName("Book");
 		productBO.setQuantity(200);
 		productBO.setPrice(100);
 		productBO.setSku("00A");
-		productBO.setDepartmentId("gjfchszckh20");
+		productBO.setDepartmentId(2);
 		productBO.setDescription("Stationery Items");
 		productBO.setCreatedBy("Jill");
 		productBO.setCreatedDate(date);
@@ -142,32 +142,33 @@ public class ProductControllerMockTest {
 		
 		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
-		productResponseJson.setRecordId("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		productResponseJson.setId(2);
 		productResponseJson.setName("Pen");
 		productResponseJson.setQuantity(100);
 		productResponseJson.setPrice(5000);
 		productResponseJson.setSku("00B");
-		productResponseJson.setDepartmentId("gjfchszckh20");
+		productResponseJson.setDepartmentId(2);
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setModifiedBy("Jill");
 		productResponseJson.setModifiedDate(date);
-
+		
+		
 		ProductBO productBO = new ProductBO();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
-		when(productBoService.update(Mockito.<ProductBO>any(), Mockito.<String>any())).thenReturn(productBO);
+		when(productBoService.update(Mockito.<ProductBO>any(), Mockito.anyInt())).thenReturn(productBO);
 		when(jsontoBO.mapObject(Mockito.<ProductRequestJson>any())).thenReturn(productBO);
 		when(respJsonMapper.mapObject(Mockito.<ProductBO>any())).thenReturn(productResponseJson);
 
-		ResponseEntity<ProductResponseJson> resp = productController.update("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2", productRequestJson);
+		ResponseEntity<ProductResponseJson> resp = productController.update(2, productRequestJson);
 		assertNotNull(resp);
 	}
 
 	@Test
 	public void deleteByIdTest() {
 
-		when(productBoService.deleteById(Mockito.<String>any())).thenReturn(1);
+		when(productBoService.deleteById(Mockito.anyInt())).thenReturn(1);
 
-		ResponseEntity<Void> resp = productController.deleteById("ff3e2ace-d188-4183-bdfc-5fb73a17d3d2");
+		ResponseEntity<Void> resp = productController.deleteById(2);
 		assertNotNull(resp);
 	}
 
