@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.shopping.ShoppingApplication;
 import com.shopping.config.DBConfiguration;
 
-@SpringBootTest(classes = {ShoppingApplication.class, DBConfiguration.class })
+@SpringBootTest(classes = { ShoppingApplication.class, DBConfiguration.class })
 @ActiveProfiles("test")
 @TestMethodOrder(OrderAnnotation.class)
 public class TestBase {

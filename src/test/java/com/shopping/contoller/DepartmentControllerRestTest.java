@@ -56,6 +56,7 @@ public class DepartmentControllerRestTest extends TestBase {
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
 		departmentRequestJson.setDepartmentName("Garden");
 		departmentRequestJson.setDescription("Gardening Area");
+		departmentRequestJson.setCreatedBy("Jill");
 		departmentRequestJson.setModifiedBy("testUser");
 		departmentRequestJson.setModifiedDate(date);
 

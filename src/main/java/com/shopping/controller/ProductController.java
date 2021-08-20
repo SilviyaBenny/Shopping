@@ -34,6 +34,7 @@ public class ProductController implements IProductController {
 	private ProductBOtoResponseJsonMapper respJsonMapper;
 
 	public ResponseEntity<ProductResponseJson> create(ProductRequestJson requestJson) {
+
 		validator.validateProductRequest(requestJson);
 		LOGGER.info("Incoming Request" + requestJson);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
@@ -44,6 +45,7 @@ public class ProductController implements IProductController {
 	}
 
 	public ResponseEntity<List<ProductResponseJson>> getAll() {
+
 		LOGGER.info("Incoming Request");
 		List<ProductBO> boList = productBoService.getAll();
 		List<ProductResponseJson> respJsonList = new ArrayList<>();
@@ -56,6 +58,7 @@ public class ProductController implements IProductController {
 	}
 
 	public ResponseEntity<ProductResponseJson> getById(int id) {
+
 		LOGGER.info("Incoming Request" + id);
 		ProductBO respBo = productBoService.getById(id);
 		ProductResponseJson responseJson = respJsonMapper.mapObject(respBo);
@@ -65,7 +68,7 @@ public class ProductController implements IProductController {
 
 	public ResponseEntity<ProductResponseJson> update(int id, @RequestBody ProductRequestJson requestJson) {
 
-		validator.validateProductUpdate(requestJson);
+		validator.validateProductRequest(requestJson);
 		LOGGER.info("Incoming Request" + id);
 		ProductBO bo = jsontoBO.mapObject(requestJson);
 		ProductBO respBo = productBoService.update(bo, id);

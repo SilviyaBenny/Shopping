@@ -11,12 +11,12 @@ public class DepartmentDTO {
 	private Date createdDate;
 	private String modifiedBy;
 	private Date modifiedDate;
-	
+
 	@Override
 	public String toString() {
-		return "DepartmentBO [id=" + id + ", departmentName=" + departmentName + ", description="
-				+ description + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy="
-				+ modifiedBy + ", modifiedDate=" + modifiedDate + "]";
+		return "DepartmentBO [id=" + id + ", departmentName=" + departmentName + ", description=" + description
+				+ ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy
+				+ ", modifiedDate=" + modifiedDate + "]";
 	}
 
 	public int getId() {
@@ -74,6 +74,5 @@ public class DepartmentDTO {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	
 
 }

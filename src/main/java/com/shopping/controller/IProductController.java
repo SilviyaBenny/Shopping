@@ -14,21 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopping.requestjson.ProductRequestJson;
 import com.shopping.responsejson.ProductResponseJson;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/product")
 public interface IProductController {
 
 	@PostMapping()
 	public ResponseEntity<ProductResponseJson> create(@RequestBody ProductRequestJson requestJson);
+
 	@GetMapping()
-	
+
 	public ResponseEntity<List<ProductResponseJson>> getAll();
+
 	@GetMapping("{id}")
 	public ResponseEntity<ProductResponseJson> getById(@PathVariable("id") int id);
+
 	@PutMapping("{id}")
 	public ResponseEntity<ProductResponseJson> update(@PathVariable("id") int id,
 			@RequestBody ProductRequestJson requestJson);
+
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable("id") int id);
-	
+
 }

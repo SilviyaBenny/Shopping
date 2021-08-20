@@ -21,8 +21,8 @@ public class DBConfiguration {
 
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("classpath:shopping_schema.sql")
-			.addScript("classpath:shopping_data.sql").build();
-		
+				.addScript("classpath:shopping_data.sql").build();
+
 	}
 
 }

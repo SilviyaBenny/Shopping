@@ -15,13 +15,13 @@ public class ProductRequestJson {
 	private Date createdDate;
 	private String modifiedBy;
 	private Date modifiedDate;
-	
+
 	@Override
 	public String toString() {
-		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
-				+ ", sku=" + sku + ", departmentId=" + departmentId + ", description=" + description + ", createdBy="
-				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
-				+ modifiedDate + "]";
+		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku=" + sku
+				+ ", departmentId=" + departmentId + ", description=" + description + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
+				+ "]";
 	}
 
 	public int getId() {
@@ -79,7 +79,7 @@ public class ProductRequestJson {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getCreatedBy() {
 		return createdBy;
 	}

@@ -116,7 +116,6 @@ public class ProductControllerMockTest {
 
 		List<ProductBO> productBOList = new ArrayList<>();
 		ProductBO productBO = new ProductBO();
-		//productBO.setId(2);
 		productBO.setName("Book");
 		productBO.setQuantity(200);
 		productBO.setPrice(100);
@@ -127,7 +126,7 @@ public class ProductControllerMockTest {
 		productBO.setCreatedDate(date);
 		productBO.setModifiedBy("Jill");
 		productBO.setModifiedDate(date);
-		
+
 		productBOList.add(productBO);
 
 		when(productBoService.getAll()).thenReturn(productBOList);
@@ -139,7 +138,7 @@ public class ProductControllerMockTest {
 
 	@Test
 	public void updateTest() {
-		
+
 		Date date = new Date();
 		ProductResponseJson productResponseJson = new ProductResponseJson();
 		productResponseJson.setId(2);
@@ -151,8 +150,7 @@ public class ProductControllerMockTest {
 		productResponseJson.setDescription("Stationery Items");
 		productResponseJson.setModifiedBy("Jill");
 		productResponseJson.setModifiedDate(date);
-		
-		
+
 		ProductBO productBO = new ProductBO();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
 		when(productBoService.update(Mockito.<ProductBO>any(), Mockito.anyInt())).thenReturn(productBO);

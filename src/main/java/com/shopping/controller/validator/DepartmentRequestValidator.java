@@ -17,46 +17,39 @@ public class DepartmentRequestValidator {
 
 	@Autowired
 	private Provider<EntityRequstContext> entityRequstContextProvider;
-	
+
 	public void validateDepartmentRequest(DepartmentRequestJson requestJson) {
 		EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
-		
-		if(requestJson.getDepartmentName() == null || requestJson.getDepartmentName().trim().length() == 0) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"DepartmentName should not be null or empty"));
+
+		if (requestJson.getDepartmentName() == null || requestJson.getDepartmentName().trim().length() == 0) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"DepartmentName should not be null or empty"));
 		}
-		if(requestJson.getDepartmentName().length() > 30) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"DepartmentName length should not be greater than 30"));
+		if (requestJson.getDepartmentName().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"DepartmentName length should not be greater than 30"));
 		}
-		if(requestJson.getDescription() == null || requestJson.getDescription().trim().length() == 0) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Description should not be null or empty"));
+		if (requestJson.getCreatedBy() == null || requestJson.getCreatedBy().trim().length() == 0) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"CreatedBy should not be null or empty"));
 		}
-		if(requestJson.getDescription().length() > 250) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Description length should not be greater than 30"));
+		if (requestJson.getCreatedBy().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"CreatedBy Length should be less than 30"));
 		}
-		if (!entityRequstContext.getErrors().isEmpty()) {
-			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Validation of input field");
+		if (requestJson.getModifiedBy() == null || requestJson.getModifiedBy().trim().length() == 0) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"ModifiedBy should not be null or empty"));
 		}
-		
-	}
-	public void validateDepartmentUpdate(DepartmentRequestJson requestJson) {
-		EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
-	
-		if(requestJson.getDepartmentName() == null || requestJson.getDepartmentName().trim().length() == 0) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"DepartmentName should not be null or empty"));
-		}
-		if(requestJson.getDepartmentName().length() > 30) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"DepartmentName length should not be greater than 30"));
-		}
-		if(requestJson.getDescription() == null || requestJson.getDescription().trim().length() == 0) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Description should not be null or empty"));
-		}
-		if(requestJson.getDescription().length() > 250) {
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Description length should not be greater than 30"));
+		if (requestJson.getModifiedBy().length() > 30) {
+			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"ModifiedBy Length should be less than 30"));
 		}
 		if (!entityRequstContext.getErrors().isEmpty()) {
-			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Validation of input field");
+			throw new ValidationException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
+					"Validation of input field");
 		}
-		
+
 	}
-	
+
 }

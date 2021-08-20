@@ -11,7 +11,7 @@ import com.shopping.error.ShoppingError;
 @Service
 @Scope("request")
 public class EntityRequstContext {
-	
+
 	private List<ShoppingError> errors = new ArrayList<>();
 
 	public List<ShoppingError> getErrors() {
@@ -21,5 +21,5 @@ public class EntityRequstContext {
 	public void addError(ShoppingError errors) {
 		this.errors.add(errors);
 	}
-	
+
 }
