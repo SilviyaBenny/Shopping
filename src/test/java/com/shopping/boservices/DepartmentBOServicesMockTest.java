@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
@@ -42,7 +41,6 @@ public class DepartmentBOServicesMockTest {
 
 	@Test
 	public void createTest() {
-
 		Date date = new Date();
 		DepartmentBO departmentBO = new DepartmentBO();
 		departmentBO.setId(2);

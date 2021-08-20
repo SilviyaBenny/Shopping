@@ -19,11 +19,10 @@ import com.shopping.mapper.requesttobo.DepartmentRequestJsonToBOMapper;
 import com.shopping.requestjson.DepartmentRequestJson;
 import com.shopping.responsejson.DepartmentResponseJson;
 
-
 @RestController
 public class DepartmentController implements IDepartmentController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
-	
+
 	@Autowired
 	private DepartmentRequestValidator validator;
 	@Autowired
@@ -34,6 +33,7 @@ public class DepartmentController implements IDepartmentController {
 	private DepartmentBOtoResponseJsonMapper botoResponseMapper;
 
 	public ResponseEntity<DepartmentResponseJson> create(DepartmentRequestJson requestJson) {
+
 		validator.validateDepartmentRequest(requestJson);
 		LOGGER.info("Incoming request " + requestJson);
 		DepartmentBO bo = requestJsonToBOMapper.mapObject(requestJson);
@@ -41,9 +41,11 @@ public class DepartmentController implements IDepartmentController {
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
 		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
+
 	}
 
 	public ResponseEntity<List<DepartmentResponseJson>> getAll() {
+
 		LOGGER.info("Incoming request ");
 		List<DepartmentBO> boList = departmentBOServices.getAll();
 		List<DepartmentResponseJson> respJsonList = new ArrayList<>();
@@ -56,6 +58,7 @@ public class DepartmentController implements IDepartmentController {
 	}
 
 	public ResponseEntity<DepartmentResponseJson> getById(int id) {
+
 		LOGGER.info("Incoming request " + id);
 		DepartmentBO respBO = departmentBOServices.getById(id);
 		DepartmentResponseJson respJson = botoResponseMapper.mapObject(respBO);
@@ -63,9 +66,9 @@ public class DepartmentController implements IDepartmentController {
 		return ResponseEntity.status(HttpStatus.OK).body(respJson);
 	}
 
-	public ResponseEntity<DepartmentResponseJson> update(int id,
-			@RequestBody DepartmentRequestJson requestJson) {
-		validator.validateDepartmentUpdate(requestJson);
+	public ResponseEntity<DepartmentResponseJson> update(int id, @RequestBody DepartmentRequestJson requestJson) {
+
+		validator.validateDepartmentRequest(requestJson);
 		LOGGER.info("Incoming request " + id);
 		DepartmentBO departmentBO = requestJsonToBOMapper.mapObject(requestJson);
 		DepartmentBO respBO = departmentBOServices.update(departmentBO, id);
@@ -73,8 +76,9 @@ public class DepartmentController implements IDepartmentController {
 		LOGGER.info("Outgoing Response " + respJson);
 		return new ResponseEntity<DepartmentResponseJson>(respJson, HttpStatus.OK);
 	}
-	
+
 	public ResponseEntity<Void> deleteById(int id) {
+
 		LOGGER.info("Incoming Request" + id);
 		int numberofRecords = departmentBOServices.deleteById(id);
 		LOGGER.info("Outgoing Response" + numberofRecords);

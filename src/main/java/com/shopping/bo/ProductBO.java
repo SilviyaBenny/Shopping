@@ -15,20 +15,19 @@ public class ProductBO {
 	private Date createdDate;
 	private String modifiedBy;
 	private Date modifiedDate;
-	
+
 	@Override
 	public String toString() {
-		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
-				+ ", sku=" + sku + ", departmentId=" + departmentId + ", description=" + description + ", createdBy="
-				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
-				+ modifiedDate + "]";
+		return "ProductBO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", sku=" + sku
+				+ ", departmentId=" + departmentId + ", description=" + description + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
+				+ "]";
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -64,6 +63,7 @@ public class ProductBO {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
+
 	public int getDepartmentId() {
 		return departmentId;
 	}
@@ -79,6 +79,7 @@ public class ProductBO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -110,6 +111,5 @@ public class ProductBO {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-
 
 }

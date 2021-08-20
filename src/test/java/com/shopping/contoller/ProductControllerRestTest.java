@@ -10,32 +10,37 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import com.shopping.controller.DepartmentController;
 import com.shopping.controller.ProductController;
 import com.shopping.requestjson.ProductRequestJson;
+import com.shopping.responsejson.DepartmentResponseJson;
 import com.shopping.responsejson.ProductResponseJson;
 
 public class ProductControllerRestTest extends TestBase {
 
 	@Autowired
 	ProductController productController;
-	
+	@Autowired
+	DepartmentController departmentController;
+
 	@Test
 	@Order(1)
 	public void createTest() {
-
 		Date date = new Date();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
-		productRequestJson.setName("Book");
+		productRequestJson.setName("Box");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(2);
+		ResponseEntity<List<DepartmentResponseJson>> depResp = departmentController.getAll();
+		assertNotNull(depResp);
+		assertNotNull(depResp.getBody());
+		productRequestJson.setDepartmentId(depResp.getBody().get(0).getId());
 		productRequestJson.setDescription("Stationery Items");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);
 		productRequestJson.setModifiedBy("testUser");
 		productRequestJson.setModifiedDate(date);
-
 
 		ResponseEntity<ProductResponseJson> resp = productController.create(productRequestJson);
 		assertNotNull(resp);
@@ -49,34 +54,33 @@ public class ProductControllerRestTest extends TestBase {
 		ResponseEntity<List<ProductResponseJson>> resp = productController.getAll();
 		assertNotNull(resp);
 	}
-	
+
 	@Test
 	@Order(3)
 	public void getByIdTest() {
 
-		ResponseEntity<ProductResponseJson> resp = productController.getById(2);
+		ResponseEntity<ProductResponseJson> resp = productController.getById(3);
 		assertNotNull(resp);
 	}
 
 	@Test
 	@Order(4)
 	public void updateTest() {
-		
 		Date date = new Date();
 		ProductRequestJson productRequestJson = new ProductRequestJson();
-		productRequestJson.setName("Pen");
+		productRequestJson.setName("Highlighters");
 		productRequestJson.setQuantity(90);
 		productRequestJson.setPrice(100);
 		productRequestJson.setSku("00B");
-		productRequestJson.setDepartmentId(2);
+		ResponseEntity<List<DepartmentResponseJson>> depResp = departmentController.getAll();
+		productRequestJson.setDepartmentId(depResp.getBody().get(0).getId());
 		productRequestJson.setDescription("Stationery Items");
 		productRequestJson.setCreatedBy("Jill");
 		productRequestJson.setCreatedDate(date);
 		productRequestJson.setModifiedBy("testUser");
 		productRequestJson.setModifiedDate(date);
 
-
-		ResponseEntity<ProductResponseJson> resp = productController.update(2, productRequestJson);
+		ResponseEntity<ProductResponseJson> resp = productController.update(3, productRequestJson);
 		assertNotNull(resp);
 	}
 
@@ -84,7 +88,7 @@ public class ProductControllerRestTest extends TestBase {
 	@Order(5)
 	public void deleteByIdTest() {
 
-		ResponseEntity<Void> resp = productController.deleteById(2);
+		ResponseEntity<Void> resp = productController.deleteById(3);
 		assertNotNull(resp);
 	}
 

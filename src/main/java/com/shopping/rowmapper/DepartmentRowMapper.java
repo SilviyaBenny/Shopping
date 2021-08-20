@@ -10,7 +10,7 @@ import com.shopping.repository.dto.DepartmentDTO;
 public class DepartmentRowMapper implements RowMapper<DepartmentDTO> {
 
 	@Override
-	public DepartmentDTO mapRow(ResultSet rs , int rowNum)throws SQLException{
+	public DepartmentDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		DepartmentDTO departmentDTO = new DepartmentDTO();
 		departmentDTO.setId(rs.getInt("ID"));
 		departmentDTO.setDepartmentName(rs.getString("DEPARTMENT_NAME"));
@@ -19,7 +19,7 @@ public class DepartmentRowMapper implements RowMapper<DepartmentDTO> {
 		departmentDTO.setCreatedDate(rs.getDate("CREATED_DATE"));
 		departmentDTO.setModifiedBy(rs.getString("MODIFIED_BY"));
 		departmentDTO.setModifiedDate(rs.getDate("MODIFIED_DATE"));
-		
+
 		return departmentDTO;
 	}
 }

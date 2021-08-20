@@ -8,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.shopping.error.ShoppingError;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ShoppingErrorResp implements Serializable{
-	
+public class ShoppingErrorResp implements Serializable {
+
 	private String message;
-	
+
 	private ErrorCode errorCode;
-	
+
 	private ErrorType type;
-	
+
 	@JsonProperty("errorDetails")
 	private List<ShoppingError> errorDetails;
 
@@ -50,6 +50,5 @@ public class ShoppingErrorResp implements Serializable{
 	public void setErrorDetails(List<ShoppingError> errorDetails) {
 		this.errorDetails = errorDetails;
 	}
-	
 
 }

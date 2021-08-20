@@ -67,7 +67,8 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 		} catch (EmptyResultDataAccessException e) {
 
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Object not found"));
+			entityRequstContext.addError(
+					new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
 					"Item with id " + id + "not found");
 		}
@@ -76,15 +77,16 @@ public class DepartmentBOServices implements IDepartmentBOServices {
 	public DepartmentBO update(DepartmentBO departmentBO, int id) {
 		LOGGER.info("Incoming Request:" + id);
 		try {
-		DepartmentDTO dto = boTodtoMapper.mapObject(departmentBO);
-		DepartmentDTO respDTO = departmentDAO.update(dto, id);
-		DepartmentBO respBO = dtoToboMapper.mapObject(respDTO);
-		LOGGER.info("Outgoing response:" + respBO);
-		return respBO;
-		}catch (DatabaseException e) {
+			DepartmentDTO dto = boTodtoMapper.mapObject(departmentBO);
+			DepartmentDTO respDTO = departmentDAO.update(dto, id);
+			DepartmentBO respBO = dtoToboMapper.mapObject(respDTO);
+			LOGGER.info("Outgoing response:" + respBO);
+			return respBO;
+		} catch (DatabaseException e) {
 
 			EntityRequstContext entityRequstContext = entityRequstContextProvider.get();
-			entityRequstContext.addError(new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,"Object not found"));
+			entityRequstContext.addError(
+					new ShoppingError(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION, "Object not found"));
 			throw new ItemNotFoundException(ErrorCode.SHOPPING_VALIDATION_100, ErrorType.VALIDATION,
 					"Item with id " + id + "not found");
 		}

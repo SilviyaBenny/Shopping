@@ -43,7 +43,6 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void createTest() {
-		
 		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
@@ -68,7 +67,6 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void getByIdTest() {
-		
 		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
@@ -92,7 +90,6 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void getAllTest() {
-		
 		Date date = new Date();
 		List<ProductDTO> productDTOlist = new ArrayList<>();
 		ProductDTO productDTO = new ProductDTO();
@@ -131,7 +128,6 @@ public class ProductBOServicesMockTest {
 
 	@Test
 	public void updateTest() {
-		
 		Date date = new Date();
 		ProductDTO productDTO = new ProductDTO();
 		ProductBO productBO = new ProductBO();
@@ -151,13 +147,13 @@ public class ProductBOServicesMockTest {
 		when(dtoToboMapper.mapObject(Mockito.<ProductDTO>any())).thenReturn(productBO);
 
 		ProductBO bo = productBoServices.update(productBO, 2);
-		assertNotNull(bo);   
+		assertNotNull(bo);
 	}
 
 	@Test
 	public void deleteById() {
 		when(productDAO.deleteById(Mockito.anyInt())).thenReturn(1);
-		int bo= productBoServices.deleteById(2);
+		int bo = productBoServices.deleteById(2);
 		assertNotNull(bo);
 	}
 

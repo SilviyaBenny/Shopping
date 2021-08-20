@@ -24,13 +24,12 @@ public class DepartmentCURDTest extends TestBase {
 	public void test() {
 		Date date = new Date();
 		DepartmentRequestJson departmentRequestJson = new DepartmentRequestJson();
-		departmentRequestJson.setDepartmentName("Home");
+		departmentRequestJson.setDepartmentName("Bakery");
 		departmentRequestJson.setDescription("Home Appliances");
 		departmentRequestJson.setCreatedBy("Jill");
 		departmentRequestJson.setCreatedDate(date);
 		departmentRequestJson.setModifiedBy("testUser");
 		departmentRequestJson.setModifiedDate(date);
-
 
 		ResponseEntity<DepartmentResponseJson> resp = departmentController.create(departmentRequestJson);
 		assertRequest(departmentRequestJson, resp.getBody());
@@ -66,7 +65,6 @@ public class DepartmentCURDTest extends TestBase {
 		assertEquals(requestJson.getDescription(), responseJson.getDescription());
 		assertEquals(requestJson.getCreatedBy(), responseJson.getCreatedBy());
 		assertEquals(requestJson.getModifiedBy(), responseJson.getModifiedBy());
-
 
 	}
 }

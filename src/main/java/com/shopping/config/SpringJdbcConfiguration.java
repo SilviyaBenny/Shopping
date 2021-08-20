@@ -9,8 +9,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
 public class SpringJdbcConfiguration {
-	@Value("${product.db.Url}")
-	private String Url;
+	@Value("${product.db.url}")
+	private String url;
 	@Value("${product.db.username}")
 	private String username;
 	@Value("${product.db.password}")
@@ -20,7 +20,7 @@ public class SpringJdbcConfiguration {
 	public DataSource mysqlDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl(Url);
+		dataSource.setUrl(url);
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
 
