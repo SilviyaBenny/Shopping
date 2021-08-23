@@ -3,6 +3,7 @@ package com.shopping.bo;
 import java.util.Date;
 
 public class ProductBO {
+	
 
 	private int id;
 	private String name;
