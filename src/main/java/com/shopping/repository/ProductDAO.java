@@ -15,8 +15,13 @@ import com.shopping.exception.ItemNotFoundException;
 import com.shopping.repository.dto.ProductDTO;
 import com.shopping.rowmapper.ProductRowMapper;
 
+/**
+ * 
+ * Product CRUD operations
+ *
+ */
 @Repository
-public class ProductDAO {
+public class ProductDAO implements IProductDAO{
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -27,6 +32,7 @@ public class ProductDAO {
 	private static final String UPDATE_QUERY = "UPDATE PRODUCT SET NAME=:NAME, QUANTITY=:QUANTITY,PRICE=:PRICE,SKU=:SKU,DEPARTMENT_ID=:DEPARTMENT_ID,DESCRIPTION=:DESCRIPTION,MODIFIED_BY=:MODIFIED_BY,MODIFIED_DATE=:MODIFIED_DATE  WHERE ID = :ID";
 	private static final String DELETE_QUERY = "DELETE FROM PRODUCT WHERE ID = :ID";
 
+	@Override
 	public ProductDTO create(ProductDTO productDTO) {
 
 		Date date = new Date();
@@ -47,16 +53,19 @@ public class ProductDAO {
 		return productDTO;
 	}
 
+	@Override
 	public List<ProductDTO> getAll() {
 		return namedParameterJdbcTemplate.query(SELECT_ALL_QUERY, new ProductRowMapper());
 	}
 
+	@Override
 	public ProductDTO getById(int id) {
 
 		return this.namedParameterJdbcTemplate.queryForObject(SELECT_BY_ID_QUERY, new MapSqlParameterSource("ID", id),
 				new ProductRowMapper());
 	}
 
+	@Override
 	public ProductDTO update(ProductDTO productDTO, int id) {
 
 		productDTO.setModifiedDate(new Date());
@@ -79,6 +88,7 @@ public class ProductDAO {
 		return productDTO;
 	}
 
+	@Override
 	public int deleteById(int id) {
 
 		SqlParameterSource namedParameters = new MapSqlParameterSource("ID", id);

@@ -14,25 +14,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopping.requestjson.ProductRequestJson;
 import com.shopping.responsejson.ProductResponseJson;
-
+/**
+ * ProductController class
+ * 
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/product")
 public interface IProductController {
 
+	/**
+	 * Create product
+	 * 
+	 * 
+	 */
 	@PostMapping()
 	public ResponseEntity<ProductResponseJson> create(@RequestBody ProductRequestJson requestJson);
 
+	/**
+	 * GetAll product
+	 * 
+	 * 
+	 */
 	@GetMapping()
-
 	public ResponseEntity<List<ProductResponseJson>> getAll();
 
+	/**
+	 * Get product ById
+	 * 
+	 * 
+	 */
 	@GetMapping("{id}")
 	public ResponseEntity<ProductResponseJson> getById(@PathVariable("id") int id);
 
+	/**
+	 * Update product
+	 * 
+	 * 
+	 */
 	@PutMapping("{id}")
 	public ResponseEntity<ProductResponseJson> update(@PathVariable("id") int id,
 			@RequestBody ProductRequestJson requestJson);
 
+	/**
+	 * Delete product
+	 * 
+	 * 
+	 */
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable("id") int id);
 
