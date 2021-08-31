@@ -14,9 +14,13 @@ import com.shopping.exception.ErrorType;
 import com.shopping.exception.ItemNotFoundException;
 import com.shopping.repository.dto.DepartmentDTO;
 import com.shopping.rowmapper.DepartmentRowMapper;
-
+/**
+ * 
+ * Department CRUD operations
+ *
+ */
 @Repository
-public class DepartmentDAO {
+public class DepartmentDAO implements IDepartmentDAO{
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -27,6 +31,7 @@ public class DepartmentDAO {
 	private static final String UPDATE_QUERY = "UPDATE DEPARTMENT SET DEPARTMENT_NAME=:DEPARTMENT_NAME, DESCRIPTION=:DESCRIPTION,MODIFIED_BY=:MODIFIED_BY,MODIFIED_DATE=:MODIFIED_DATE WHERE ID = :ID";
 	private static final String DELETE_QUERY = "DELETE FROM DEPARTMENT WHERE ID = :ID";
 
+	@Override
 	public DepartmentDTO create(DepartmentDTO departmentDTO) {
 
 		Date date = new Date();
@@ -45,16 +50,19 @@ public class DepartmentDAO {
 		return departmentDTO;
 	}
 
+	@Override
 	public List<DepartmentDTO> getAll() {
 		return namedParameterJdbcTemplate.query(SELECT_ALL_QUERY, new DepartmentRowMapper());
 	}
 
+	@Override
 	public DepartmentDTO getById(int id) {
 
 		return this.namedParameterJdbcTemplate.queryForObject(SELECT_BY_ID_QUERY, new MapSqlParameterSource("ID", id),
 				new DepartmentRowMapper());
 	}
 
+	@Override
 	public DepartmentDTO update(DepartmentDTO departmentDTO, int id) {
 
 		departmentDTO.setModifiedDate(new Date());
@@ -74,6 +82,7 @@ public class DepartmentDAO {
 		return departmentDTO;
 	}
 
+	@Override
 	public int deleteById(int id) {
 		SqlParameterSource namedParameters = new MapSqlParameterSource("ID", id);
 		return namedParameterJdbcTemplate.update(DELETE_QUERY, namedParameters);
