@@ -10,7 +10,6 @@ public class ProductRequestJsonToBOMapper {
 
 	public ProductBO mapObject(ProductRequestJson requestJson) {
 		ProductBO bo = new ProductBO();
-		bo.setId(requestJson.getId());
 		bo.setName(requestJson.getName());
 		bo.setPrice(requestJson.getPrice());
 		bo.setQuantity(requestJson.getQuantity());
