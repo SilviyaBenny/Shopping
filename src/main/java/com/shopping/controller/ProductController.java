@@ -30,7 +30,7 @@ public class ProductController implements IProductController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
-	ProductRequestValidator validator;
+	private ProductRequestValidator validator;
 	@Autowired
 	private ProductBOServices productBoService;
 	@Autowired
