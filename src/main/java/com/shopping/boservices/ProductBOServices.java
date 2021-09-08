@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.shopping.bo.ProductBO;
 import com.shopping.config.EntityRequstContext;
@@ -29,6 +30,7 @@ import com.shopping.repository.dto.ProductDTO;
  *
  */
 @Component
+@Transactional
 public class ProductBOServices implements IProductBOServices {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);

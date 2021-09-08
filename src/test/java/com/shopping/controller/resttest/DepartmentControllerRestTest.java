@@ -1,4 +1,4 @@
-package com.shopping.contoller;
+package com.shopping.controller.resttest;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import com.shopping.base.TestBase;
 import com.shopping.controller.DepartmentController;
 import com.shopping.requestjson.DepartmentRequestJson;
 import com.shopping.responsejson.DepartmentResponseJson;
