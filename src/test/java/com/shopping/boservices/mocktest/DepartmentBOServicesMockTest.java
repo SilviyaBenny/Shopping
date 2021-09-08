@@ -1,4 +1,4 @@
-package com.shopping.boservices;
+package com.shopping.boservices.mocktest;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.shopping.bo.DepartmentBO;
+import com.shopping.boservices.DepartmentBOServices;
 import com.shopping.mapper.botodto.DepartmentBOtoDTOMapper;
 import com.shopping.mapper.dtotobo.DepartmentDTOtoBOMapper;
 import com.shopping.repository.DepartmentDAO;

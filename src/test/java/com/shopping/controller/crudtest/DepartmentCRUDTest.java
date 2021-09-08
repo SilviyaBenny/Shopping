@@ -1,4 +1,4 @@
-package com.shopping.contoller;
+package com.shopping.controller.crudtest;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.shopping.base.TestBase;
 import com.shopping.controller.DepartmentController;
 import com.shopping.exception.ItemNotFoundException;
 import com.shopping.requestjson.DepartmentRequestJson;
 import com.shopping.responsejson.DepartmentResponseJson;
 
-public class DepartmentCURDTest extends TestBase {
+public class DepartmentCRUDTest extends TestBase {
 
 	@Autowired
 	private DepartmentController departmentController;

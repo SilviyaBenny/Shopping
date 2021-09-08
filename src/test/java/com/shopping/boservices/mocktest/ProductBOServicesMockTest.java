@@ -1,4 +1,4 @@
-package com.shopping.boservices;
+package com.shopping.boservices.mocktest;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.shopping.bo.ProductBO;
+import com.shopping.boservices.ProductBOServices;
 import com.shopping.mapper.botodto.ProductBOtoDTOMapper;
 import com.shopping.mapper.botoresponse.ProductBOtoResponseJsonMapper;
 import com.shopping.mapper.dtotobo.ProductDTOtoBOMapper;

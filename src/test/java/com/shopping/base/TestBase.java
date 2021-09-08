@@ -1,4 +1,4 @@
-package com.shopping.contoller;
+package com.shopping.base;
 
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;

@@ -1,4 +1,4 @@
-package com.shopping.contoller;
+package com.shopping.contoller.mocktest;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
