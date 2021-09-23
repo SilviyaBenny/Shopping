@@ -1,4 +1,4 @@
-package com.shopping.exception;
+package com.shopping.controller;
 
 import javax.inject.Provider;
 
@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.shopping.config.EntityRequstContext;
+import com.shopping.exception.ShoppingErrorResp;
+import com.shopping.exception.ShoppingException;
 
 @ControllerAdvice
 public class ShoppingControllerAdvice {

@@ -13,8 +13,6 @@ public class ShoppingException extends RuntimeException {
 
 	protected String detailedMessage = null;
 
-	private ShoppingException() {
-	}
 
 	public ShoppingException(String message) {
 

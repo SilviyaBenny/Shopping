@@ -10,6 +10,8 @@ import com.shopping.exception.ErrorType;
 
 public class ShoppingError implements Serializable {
 
+	private static final long serialVersionUID = 4931946931689839439L;
+
 	private ErrorCode errorCode = null;
 
 	private ErrorType type = null;
